@@ -5,7 +5,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :password
       t.string :email
       t.text :signature
-      t.boolean :admin, :default => 'false'
+      t.integer :status, :default => 0
 
       t.timestamps
     end
