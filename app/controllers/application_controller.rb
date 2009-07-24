@@ -22,4 +22,16 @@ class ApplicationController < ActionController::Base
       User.try_cookie_authentication(cookies[:autologin]) rescue nil
     end
   end
+  
+  def require_login
+    redirect_to :controller => 'account', :action => 'login' unless User.current && User.current.active?
+  end
+  
+  def require_moderator
+    redirect_to :controller => 'account', :action => 'login' unless User.current && User.current.moderator?
+  end
+  
+  def require_administrator
+    redirect_to :controller => 'account', :action => 'login' unless User.current && User.current.admin?
+  end
 end

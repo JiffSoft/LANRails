@@ -1,0 +1,8 @@
+# LANRails settings and defaults
+
+site_title:
+  default: LANRails
+ 
+require_newacct_activation:
+  default: true
+

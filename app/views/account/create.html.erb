@@ -1,0 +1,32 @@
+<h1>Account#create</h1>
+<% form_for :user, @user, :url => {:controller => 'account', :action => 'create'} do |f| %>
+	<span class="error" style="text-align: center; margin: auto;">
+		<%= error_messages_for 'user', :header_message => "Please Try Again!", :message => "There were the following errors when trying to create your account" %>
+	</span>
+	<table width="75%" align="center" border="0">
+		<tr>
+			<td><b>Username:</b></td>
+			<td><%= f.text_field :username, :size => 25 %></td>
+		</tr>
+		<tr>
+			<td valign="top"><b>Password:</b><br/>
+				<font style="font-size: smaller;"><i>Confirm</i></font>
+			</td>
+			<td><%= f.password_field :password, :size => 25 %><br/>
+				<%= f.password_field :password_confirmation, :size => 25 %></td>
+		</tr>
+		<tr>
+			<td><b>Email:</b></td>
+			<td><%= f.text_field :email, :size => 35 %></td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<% if ENV['RECAPTCHA_PUBLIC_KEY'] %>
+					<%= recaptcha_tags %>
+				<% end %>
+				<br/>
+				<%= submit_tag "Register" %>
+			</td>
+		</tr>
+	</table>
+<% end %>
