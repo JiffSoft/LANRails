@@ -1,4 +1,5 @@
 class AccountController < ApplicationController
+  require "base64"
   uses_tiny_mce :only => [:profile] # for signature
   
   def index
@@ -10,9 +11,18 @@ class AccountController < ApplicationController
   end
 
   def login
+    if User.current && User.current.loggedin?
+      redirect_to "/"
+    end
+    if request.post?
+      try_login
+    end
   end
 
   def logout
+    session[:user_id] = nil
+    reset_session
+    redirect_to :controller => 'news'
   end
 
   def create
@@ -41,6 +51,25 @@ class AccountController < ApplicationController
   end
 
   def activate
+  end
+
+private
+  def try_login
+    User.current = User.try_password_authentication(params[:username], params[:password])
+    if User.current.nil?
+      # invalid!
+      @login_error = "Invalid login!"
+    elsif User.current.status == User::STATUS_INACTIVE
+      # we're not active yet!
+      @login_error = "Your e-mail has not yet been confirmed!"
+    else
+      session[:user_id] = User.current.id
+      if not params[:id]
+        redirect_to :controller => 'news'
+      else
+        redirect_to Base64.decode64(params[:id])
+      end
+    end
   end
 
 end

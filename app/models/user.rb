@@ -17,9 +17,21 @@ class User < ActiveRecord::Base
 
   STATUS_ANONYMOUS = -1
   STATUS_INACTIVE = 0
-  STATUS_REGISTERED = 1
+  STATUS_RECOVERY = 1
+  STATUS_REGISTERED = 3
   STATUS_MODERATOR = 7
   STATUS_ADMIN = 15
+
+  def self.try_password_authentication(user, pass)
+    return nil if user.to_s.empty? || pass.to_s.empty?
+    u = find(:first, :conditions => ["UPPER(username) = ?", user.to_s.upcase])
+    return nil unless u
+    return nil unless u.password = User.password_hash(pass)
+    @me = u
+    return u
+  rescue => err
+    raise err
+  end
 
   def self.try_cookie_authentication(key)
     # TODO make me
@@ -39,6 +51,13 @@ class User < ActiveRecord::Base
 
   def password=(str)
     write_attribute("password",Digest::SHA1.hexdigest(str))
+  end
+  def password_confirmation=(str)
+    write_attribute("password_confirmation",Digest::SHA1.hexdigest(str))
+  end
+  
+  def self.password_hash(str)
+    return Digest::SHA1.hexdigest(str)
   end
   
   def avatar
@@ -64,5 +83,14 @@ class User < ActiveRecord::Base
 
   def anonymous?
     !loggedin?
+  end
+  
+  def complete_verification(code)
+    if code = self.verifycode
+      self.status = STATUS_REGISTERED
+      self.verifycode = nil
+    else
+      return false
+    end 
   end
 end
