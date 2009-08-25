@@ -29,19 +29,26 @@ class AccountController < ApplicationController
     if request.post?
       @user = User.new(params[:user])
       if (Settings[:require_newacct_activation] == 'true')
-        @user.status = 0 # not yet activated
+        @user.status = User::STATUS_INACTIVE # not yet activated
+      else
+        @user.status = User::STATUS_REGISTERED
       end
       if ENV['RECAPTCHA_PUBLIC_KEY']
         # save with recaptcha
         if (verify_recaptcha(@user) && @user.save)
+          if (Settings[:require_newacct_activation] == 'true')
+            Postoffice.deliver_verification_email(@user)
+          end
           render :partial => 'thankyou'
         end
       elsif @user.save
         # we're not using recaptcha
+        if (Settings[:require_newacct_activation] == 'true')
+          Postoffice.deliver_verification_email(@user)
+        end
         render :partial => 'thankyou'        
       end
     end
-    # TODO send activation email
   end
 
   def rescue

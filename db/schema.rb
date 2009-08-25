@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090724174501) do
+ActiveRecord::Schema.define(:version => 20090825142313) do
 
   create_table "forum_posts", :force => true do |t|
     t.integer  "thread_id"
@@ -44,9 +44,8 @@ ActiveRecord::Schema.define(:version => 20090724174501) do
     t.datetime "updated_at"
   end
 
-  create_table "news_articles", :force => true do |t|
+  create_table "news", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "party_id"
     t.string   "title"
     t.text     "body"
     t.datetime "created_at"
@@ -101,6 +100,7 @@ ActiveRecord::Schema.define(:version => 20090724174501) do
     t.integer  "status",     :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "verifycode"
   end
 
 end

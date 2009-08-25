@@ -6,3 +6,9 @@ site_title:
 require_newacct_activation:
   default: true
 
+email_from:
+  default: noreply@example.com
+
+frontpage_news_limit:
+  default: 5
+

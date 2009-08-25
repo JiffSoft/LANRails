@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
     return nil if user.to_s.empty? || pass.to_s.empty?
     u = find(:first, :conditions => ["UPPER(username) = ?", user.to_s.upcase])
     return nil unless u
-    return nil unless u.password = User.password_hash(pass)
+    return nil unless u.password == User::password_hash(pass)
     @me = u
     return u
   rescue => err
@@ -86,9 +86,10 @@ class User < ActiveRecord::Base
   end
   
   def complete_verification(code)
-    if code = self.verifycode
+    if code == self.verifycode
       self.status = STATUS_REGISTERED
       self.verifycode = nil
+      return true
     else
       return false
     end 

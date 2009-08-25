@@ -1,0 +1,15 @@
+<h1>Write a new news article</h1>
+<% form_for @news do |f| %>
+  <span class="error" style="text-align: center; margin: auto;">
+      <%= error_messages_for 'news', :header_message => "Please Try Again!", :message => "There were the following errors when trying to create your account" %>
+  </span>
+  <div class="float_left" style="width: 100px"><h5>News Title:</h5></div>
+  <div class="float_left">
+    <%= f.text_field :title %>
+  </div>
+  <div class="break"></div>
+  <div align="center">
+    <%= f.text_area :body, :size => "65x40",:class => "mceEditor" %><br />
+    <%= f.submit "Post News Article" %>
+  </div>
+<% end %>

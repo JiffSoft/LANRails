@@ -1,2 +1,15 @@
 <h1>News#index</h1>
 <p>Find me in app/views/news/index.html.erb</p>
+<% @news.each do |n| %>
+  <table class="news_table">
+    <tr>
+      <th><%= link_to n.title, news_article_url(n) %>
+    </tr>
+    <tr>
+      <td><%= n.body %></td>
+    </tr>
+    <tr>
+      <td>Posted at <%= n.created_at %> by <%= n.user.username %></td>
+    </tr>
+  </table>
+<% end %>
