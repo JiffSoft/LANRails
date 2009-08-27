@@ -9,24 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090825142313) do
-
-  create_table "forum_posts", :force => true do |t|
-    t.integer  "thread_id"
-    t.integer  "user_id"
-    t.text     "body"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "forum_threads", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "forum_id"
-    t.string   "title"
-    t.boolean  "locked",     :default => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(:version => 20090827161417) do
 
   create_table "forums", :force => true do |t|
     t.string   "name"
@@ -68,6 +51,14 @@ ActiveRecord::Schema.define(:version => 20090825142313) do
     t.datetime "updated_at"
   end
 
+  create_table "posts", :force => true do |t|
+    t.integer  "thread_id"
+    t.integer  "user_id"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "registrations", :force => true do |t|
     t.integer  "user_id"
     t.integer  "party_id"
@@ -79,6 +70,15 @@ ActiveRecord::Schema.define(:version => 20090825142313) do
   create_table "settings", :force => true do |t|
     t.string   "name"
     t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "threads", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "forum_id"
+    t.string   "title"
+    t.boolean  "locked",     :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

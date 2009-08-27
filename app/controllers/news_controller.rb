@@ -1,7 +1,7 @@
 class NewsController < ApplicationController
   before_filter :require_moderator, :only => [:new, :update, :destroy, :edit, :create]
   uses_tiny_mce :options => {:theme => 'advanced'},
-    :only => [:write]
+    :only => [:new, :edit]
     
   def index
     @news = News.find(:all, :limit => Settings[:frontpage_news_limit],

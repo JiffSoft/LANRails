@@ -1,13 +1,23 @@
 class PartyController < ApplicationController
-  before_filter :require_login, :only => [:register]
-  
   def index
   end
 
-  def view
+  def create
   end
 
-  def register
+  def new
+  end
+
+  def edit
+  end
+
+  def show
+  end
+
+  def update
+  end
+
+  def destroy
   end
 
 end

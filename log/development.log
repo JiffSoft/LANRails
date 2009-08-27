@@ -2088,3 +2088,104 @@ RuntimeError (Called id for nil, which would mistakenly be 4 -- if you really wa
 Rendered rescues/_trace (157.0ms)
 Rendered rescues/_request_and_response (0.0ms)
 Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.0ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20090706193750)
+Migrating to CreateGames (20090706194138)
+Migrating to CreateTournaments (20090706194233)
+Migrating to CreateParties (20090706194344)
+Migrating to CreateRegistrations (20090706194700)
+Migrating to CreateNewsArticles (20090706194832)
+Migrating to CreateSettings (20090723182337)
+Migrating to CreateForums (20090724174245)
+Migrating to CreateForumThreads (20090724174415)
+Migrating to CreateForumPosts (20090724174501)
+Migrating to AddVerifycodeToUser (20090727213936)
+Migrating to RemovePartyIdFromNewsArticles (20090825142313)
+Migrating to RenameForumThreadsToThreads (20090827161346)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mALTER TABLE forum_threads RENAME TO threads[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20090827161346')[0m
+Migrating to RenameForumPostsToPosts (20090827161417)
+  [4;35;1mSQL (0.0ms)[0m   [0mALTER TABLE forum_posts RENAME TO posts[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20090827161417')[0m
+  [4;35;1mSQL (0.0ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.0ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("forums")[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("games")[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("news")[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("parties")[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("posts")[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("registrations")[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("settings")[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("threads")[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("tournaments")[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("users")[0m
+
+
+Processing NewsController#index (for 127.0.0.1 at 2009-08-27 12:41:09) [GET]
+  Parameters: {"action"=>"index", "controller"=>"news"}
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT max("settings".updated_at) AS max_updated_at FROM "settings" [0m
+  [4;35;1mSettings Load (0.0ms)[0m   [0mSELECT * FROM "settings" WHERE ("settings"."name" = 'frontpage_news_limit') LIMIT 1[0m
+  [4;36;1mNews Load (0.0ms)[0m   [0;1mSELECT * FROM "news" ORDER BY created_at DESC LIMIT 5[0m
+Rendering template within layouts/application
+Rendering news/index
+  [4;35;1mSettings Load (0.0ms)[0m   [0mSELECT * FROM "settings" WHERE ("settings"."name" = 'site_title') LIMIT 1[0m
+Completed in 906ms (View: 15, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing NewsController#index (for 127.0.0.1 at 2009-08-27 12:43:14) [GET]
+  Parameters: {"action"=>"index", "controller"=>"news"}
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT max("settings".updated_at) AS max_updated_at FROM "settings" [0m
+  [4;35;1mSettings Load (0.0ms)[0m   [0mSELECT * FROM "settings" WHERE ("settings"."name" = 'frontpage_news_limit') LIMIT 1[0m
+  [4;36;1mNews Load (0.0ms)[0m   [0;1mSELECT * FROM "news" ORDER BY created_at DESC LIMIT 5[0m
+Rendering template within layouts/application
+Rendering news/index
+  [4;35;1mSettings Load (0.0ms)[0m   [0mSELECT * FROM "settings" WHERE ("settings"."name" = 'site_title') LIMIT 1[0m
+Completed in 31ms (View: 0, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2009-08-27 12:43:17) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT max("settings".updated_at) AS max_updated_at FROM "settings" [0m
+Redirected to http://localhost:3000/users/new
+Completed in 32ms (DB: 0) | 302 Found [http://localhost/users]
+
+
+Processing UsersController#new (for 127.0.0.1 at 2009-08-27 12:43:18) [GET]
+  Parameters: {"action"=>"new", "controller"=>"users"}
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT max("settings".updated_at) AS max_updated_at FROM "settings" [0m
+Rendering template within layouts/application
+Rendering users/new
+  [4;36;1mSettings Load (0.0ms)[0m   [0;1mSELECT * FROM "settings" WHERE ("settings"."name" = 'site_title') LIMIT 1[0m
+Completed in 47ms (View: 16, DB: 0) | 200 OK [http://localhost/users/new]
+
+
+Processing NewsController#index (for 127.0.0.1 at 2009-08-27 12:56:26) [GET]
+  Parameters: {"action"=>"index", "controller"=>"news"}
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT max("settings".updated_at) AS max_updated_at FROM "settings" [0m
+  [4;36;1mSettings Load (0.0ms)[0m   [0;1mSELECT * FROM "settings" WHERE ("settings"."name" = 'frontpage_news_limit') LIMIT 1[0m
+  [4;35;1mNews Load (0.0ms)[0m   [0mSELECT * FROM "news" ORDER BY created_at DESC LIMIT 5[0m
+Rendering template within layouts/application
+Rendering news/index
+  [4;36;1mSettings Load (0.0ms)[0m   [0;1mSELECT * FROM "settings" WHERE ("settings"."name" = 'site_title') LIMIT 1[0m
+Completed in 46ms (View: 0, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing AccountsController#show (for 127.0.0.1 at 2009-08-27 12:56:29) [GET]
+  Parameters: {"action"=>"show", "controller"=>"accounts"}
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT max("settings".updated_at) AS max_updated_at FROM "settings" [0m
+Rendering template within layouts/application
+Rendering accounts/show
+  [4;36;1mSettings Load (0.0ms)[0m   [0;1mSELECT * FROM "settings" WHERE ("settings"."name" = 'site_title') LIMIT 1[0m
+Completed in 47ms (View: 16, DB: 0) | 200 OK [http://localhost/account]

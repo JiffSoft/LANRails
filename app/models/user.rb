@@ -1,9 +1,10 @@
 class User < ActiveRecord::Base
   require 'digest/sha1'
 
-  has_many :games
   has_many :registrations
-  has_many :news_articles
+  has_many :news
+  has_many :threads
+  has_many :posts, :through => :threads
 
   validates_presence_of :username, :message => "is required!"
   validates_uniqueness_of :username, :message => "is already registered!"

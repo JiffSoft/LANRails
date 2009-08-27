@@ -1,5 +1,6 @@
-class TournamentsController < ApplicationController
+class ThreadsController < ApplicationController
   def index
+    redirect_to :controller => 'forum'
   end
 
   def create
