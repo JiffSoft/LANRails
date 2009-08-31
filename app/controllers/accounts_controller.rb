@@ -1,5 +1,6 @@
 class AccountsController < ApplicationController
   require "base64"
+  require "digest/sha1"
   uses_tiny_mce :only => [:profile] # for signature
   
   def show
@@ -34,6 +35,8 @@ class AccountsController < ApplicationController
       if (verify_recaptcha(@user) && @user.save)
         if (Settings[:require_newacct_activation] == 'true')
           Postoffice.deliver_verification_email(@user)
+        else
+          Postoffice.deliver_newuser_email(@user)
         end
         render :partial => 'thankyou'
       end
@@ -41,6 +44,8 @@ class AccountsController < ApplicationController
       # we're not using recaptcha
       if (Settings[:require_newacct_activation] == 'true')
         Postoffice.deliver_verification_email(@user)
+      else
+        Postoffice.deliver_newuser_email(@user)
       end
       render :partial => 'thankyou'
     end
@@ -52,9 +57,31 @@ class AccountsController < ApplicationController
   end
 
   def activate
-    @user = User.find_all_by_verifycode(params[:activation_code])
+    @user = User.find_by_verifycode(params[:activation_code])
     if not @user
       redirect_to root
+    end
+    @user.status = User::STATUS_REGISTERED
+    @user.save
+    Postoffice.deliver_newuser_email(@user)
+  end
+
+  def recover
+    if request.post?
+      # populate verifycode, send the recovery email
+      @user = User.find_by_username(params[:user_name])
+      if not @user
+        redirect_to root
+      end
+      @user.verifycode = Digest::SHA1.hexdigest(rand(99999999999999).to_s.center(24, rand(9).to_s))
+      @user.save
+      Postoffice.deliver_recovery_email(@user)
+    else
+      @user = User.find_by_verifycode(params[:activation_code])
+      # generate a random password
+      @newpass = rand(99999999999999).to_s.center(12, rand(9).to_s)
+      @user.password = @newpass
+      Postoffice.deliver_new_password_email(@user,@newpass)
     end
   end
 

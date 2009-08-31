@@ -22,6 +22,8 @@ ActionController::Routing::Routes.draw do |map|
   map.logout 'logout', :controller => 'accounts', :action => 'logout'
   map.login 'login', :controller => 'accounts', :action => 'login', :conditions => {:method => :post}
   map.activation 'activate/:activation_code', :controller => 'accounts', :action => 'activate'
+  map.recovery 'recovery/:activation_code', :controller => 'accounts', :action => 'recover', :conditions => {:method => :get}
+  map.recover 'recover', :controller => 'accounts', :action => 'recover', :conditions => {:method => :post}
 
   map.root :controller => "news"
 end
