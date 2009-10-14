@@ -3,9 +3,31 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 		<title><%= site_title %></title>
+        <%= stylesheet_link_tag "lanrails" %>
+        <%= stylesheet_link_tag Settings[:site_theme] %>
 		<%= include_tiny_mce_if_needed %>
 	</head>
 	<body>
-		<%= yield -%>
+        <div id="header">
+          <div id="site_banner">
+
+          </div>
+          <div id="main_nav">
+            
+          </div>
+        </div>
+        <div id="main">
+          <div id="left_bar" class="float_left">
+          </div>
+          <div id="main_body" class="float_left">
+            <%= yield -%>
+          </div>
+          <div class="break"></div>
+        </div>
+        <div id="footer">
+          <a href="http://lanrails.jonnyfunfun.com/" target="_blank">
+            <img src="/images/lanrails.png" border="0" alt="Powered by LANRails"/>
+          </a>
+        </div>
 	</body>
 </html>

@@ -12,3 +12,5 @@ email_from:
 frontpage_news_limit:
   default: 5
 
+site_theme:
+  default: default

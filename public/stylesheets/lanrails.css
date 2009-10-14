@@ -1,0 +1,41 @@
+/* 
+    Document   : lanrails.css
+    Created on : Oct 14, 2009, 1:46:20 PM
+    Author     : jonathan.enzinna
+    Description:
+        Main LANRails Stylesheet with common styles.
+*/
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.float_left {
+    float: left;
+}
+
+.break {
+    clear: both;
+}
+
+#main_nav ul {
+
+}
+
+#main_nav li {
+
+}
+
+#left_nav ul {
+
+}
+
+#left_nav li {
+    
+}
+
+#footer {
+    text-align: center;
+    margin: auto;
+}
