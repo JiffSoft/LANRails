@@ -9,6 +9,12 @@ class AccountsController < ApplicationController
     end
   end
 
+  def login_form
+    if User.current && User.current.loggedin?
+      redirect_to root_path
+    end
+  end
+
   def login
     if User.current && User.current.loggedin?
       redirect_to edit_account_path
@@ -49,11 +55,14 @@ class AccountsController < ApplicationController
       end
       render :partial => 'thankyou'
     end
-    render :action => 'new'
   end
 
   def view
     @user = User.find(params[:user_id])
+  end
+
+  def new
+    render :action => 'create'
   end
 
   def activate
