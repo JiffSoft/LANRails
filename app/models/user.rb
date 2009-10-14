@@ -79,7 +79,7 @@ class User < ActiveRecord::Base
   end
 
   def loggedin?
-    false unless @me
+    false unless @me else true
   end
 
   def anonymous?
