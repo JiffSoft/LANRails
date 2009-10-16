@@ -1,7 +1,14 @@
-<% form_tag(login_path, :class => 'login_form') do %>
-  <b>Username:</b><br/><%= text_field nil, :username, :class => 'login_input login_username_box' %><br />
-  <b>Password:</b><br/><%= password_field nil, :password, :class => 'login_input login_password_box' %><br />
-  <span>
-    <%= submit_tag 'Login', :class => 'login_button' %><%= button_to 'Register', new_account_path, :class => 'register_button' %>
+<% if not User.current && User.current.loggedin? then %>
+  <% form_tag(login_path, :class => 'login_form') do %>
+    <b>Username:</b><br/><%= text_field nil, :username, :class => 'login_input login_username_box' %><br />
+    <b>Password:</b><br/><%= password_field nil, :password, :class => 'login_input login_password_box' %><br />
+    <span>
+      <%= submit_tag 'Login', :class => 'login_button' %>
+    <% end %>
+    <%= button_to 'Register', new_account_path, :method => :get, :class => 'register_button' %>
   </span>
+<% else %>
+  Welcome back <b><%= User.current.username %></b>!<br/>
+  <%= link_to 'Profile', edit_account_path %>
+  <%= link_to 'Logout', logout_path %><br />
 <% end %>

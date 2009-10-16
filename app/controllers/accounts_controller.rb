@@ -26,13 +26,14 @@ class AccountsController < ApplicationController
   def logout
     session[:user_id] = nil
     reset_session
-    redirect_to :controller => 'news'
+    redirect_to root_path
   end
 
   def create
     @user = User.new(params[:user])
     if (Settings[:require_newacct_activation] == 'true')
       @user.status = User::STATUS_INACTIVE # not yet activated
+      @user.verifycode = Digest::SHA1.hexdigest(rand(99999999999999).to_s.center(24, rand(9).to_s))
     else
       @user.status = User::STATUS_REGISTERED
     end
@@ -103,14 +104,14 @@ private
     elsif User.current.status == User::STATUS_INACTIVE
       # we're not active yet!
       @login_error = "Your e-mail has not yet been confirmed!"
+      User.current = nil
     else
       session[:user_id] = User.current.id
       if not params[:id]
-        redirect_to :controller => 'news'
+        redirect_to root_path
       else
         redirect_to Base64.decode64(params[:id])
       end
     end
   end
-
 end

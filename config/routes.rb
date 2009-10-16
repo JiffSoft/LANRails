@@ -17,8 +17,12 @@ ActionController::Routing::Routes.draw do |map|
   # Account
   map.resource :account
 
+  # Admin
+  map.site_settings 'admin/site_settings', :controller => 'admin', :action => 'settings', :conditions => {:method => :get}
+  map.site_settings 'admin/site_settings', :controller => 'admin', :action => 'save_settings', :conditions => {:method => :post}
+
   # Custom shizzy
-  map.connect 'user/:user_id', :controller => 'accounts', :action => 'view'
+  map.profile 'user/:user_id', :controller => 'accounts', :action => 'view'
   map.logout 'logout', :controller => 'accounts', :action => 'logout'
   map.login 'login', :controller => 'accounts', :action => 'login', :conditions => {:method => :post}
   map.login 'login', :controller => 'accounts', :action => 'login_form', :conditions => {:method => :get}

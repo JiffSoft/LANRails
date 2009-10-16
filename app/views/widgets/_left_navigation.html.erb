@@ -1,1 +1,17 @@
 This is left navigation!
+<% if User.current && User.current.moderator? %>
+  <hr/>
+  <b>Moderators:</b><br/>
+  <ul>
+    <li><%= link_to 'New News Article', new_news_path %></li>
+  </ul>
+<% end %>
+<% if User.current && User.current.admin? %>
+  <hr/>
+  <b>Admin Panel:</b><br/>
+  <ul>
+    <li><%= link_to 'New Party', new_party_path %></li>
+    <li><%= link_to 'New Forum', new_forum_path %></li>
+    <li><%= link_to 'Site Settings', site_settings_path %></li>
+  </ul>
+<% end %>

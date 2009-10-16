@@ -1,4 +1,7 @@
-<h1>Account#login_form</h1>
+<h1>Login</h1>
+<% if @login_error then %>
+  <b><%= @login_error %></b>
+<% end %>
 <% form_tag(login_path) do %>
 	<b>Username:</b> <%= text_field nil, :username %><br />
 	<b>Password:</b> <%= password_field nil, :password %><br />
