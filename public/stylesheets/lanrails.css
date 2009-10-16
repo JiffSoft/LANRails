@@ -19,12 +19,12 @@ body {
     clear: both;
 }
 
-#main_nav ul {
-
+#main_nav ul, #main_nav li {
+    display: inline;
 }
 
 #main_nav li {
-
+    list-style: none;
 }
 
 #left_nav ul {
@@ -37,5 +37,4 @@ body {
 
 #footer {
     text-align: center;
-    margin: auto;
 }

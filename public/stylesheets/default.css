@@ -6,26 +6,79 @@
         Default LANRails style.
 */
 
-#header {
+body {
+    background: #a3919f url('../images/default/background.jpg') top left repeat-x;
+    margin: 0;
+    padding: 0
+}
 
+hr {
+    border-top: 1px dashed white;
+    border-bottom: none;
+}
+
+#header {
+    width: 756px;
+    margin: auto;
 }
 
 #site_banner {
-
+    height: 131px;
+    background: transparent url('../images/default/header.jpg') top center no-repeat;
 }
 
 #main_nav {
+    height: 35px;
+    padding-bottom: 5px;
+    padding-top: 10px;
+    background: transparent url('../images/default/topnav.gif') left no-repeat;
+}
 
+#main_nav li {
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 22px;
+    height: 45px;
 }
 
 #main {
-
+    width: 756px;
+    margin: auto;
+    background: #044a74;
 }
 
 #left_bar {
-    
+    width: 154px;
+    padding-left: 2px;
+    padding-right: 2px;
+    border-right: 1px dashed white;
 }
 
 #main_body {
+    width: 590px;
+    margin: 3px;
+}
 
+#footer {
+    width: 756px;
+    padding-top: 14px;
+    min-height: 66px;
+    margin: auto;
+    background: transparent url('../images/default/footer.png') top center no-repeat;
+    color: white;
+    font-size: 10px;
+}
+
+#footer a {
+    color: #8D8DFF;
+    text-decoration: none;
+}
+
+.login_input {
+    width: 96%;
+}
+
+.login_form {
+    font-size: 12px;
+    text-align: center;
 }

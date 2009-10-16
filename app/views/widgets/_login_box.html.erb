@@ -1,0 +1,7 @@
+<% form_tag(login_path, :class => 'login_form') do %>
+  <b>Username:</b><br/><%= text_field nil, :username, :class => 'login_input login_username_box' %><br />
+  <b>Password:</b><br/><%= password_field nil, :password, :class => 'login_input login_password_box' %><br />
+  <span>
+    <%= submit_tag 'Login', :class => 'login_button' %><%= button_to 'Register', new_account_path, :class => 'register_button' %>
+  </span>
+<% end %>

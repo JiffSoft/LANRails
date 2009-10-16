@@ -1,3 +1,5 @@
+.DS_Store
+nbproject/private/rake-d.txt
 log/*.log
 tmp/**/*
 db/*.db

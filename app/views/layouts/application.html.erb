@@ -9,15 +9,16 @@
 	</head>
 	<body>
         <div id="header">
-          <div id="site_banner">
-
-          </div>
+          <div id="site_banner"></div>
           <div id="main_nav">
-            
+            <%= render :partial => 'widgets/top_navigation' %>
           </div>
         </div>
         <div id="main">
           <div id="left_bar" class="float_left">
+            <%= render :partial => 'widgets/login_box' %>
+            <hr/>
+            <%= render :partial => 'widgets/left_navigation' %>
           </div>
           <div id="main_body" class="float_left">
             <%= yield -%>
@@ -25,6 +26,8 @@
           <div class="break"></div>
         </div>
         <div id="footer">
+          Powered by <a href="http://lanrails.jonnyfunfun.com/" target="_blank">LANRails</a>, Open-source LAN Party Management: Rails Style!<br/>
+          Copyright &copy; 2009: Jonathan Enzinna.  Licensed under the GNU/GPL.<br/>
           <a href="http://lanrails.jonnyfunfun.com/" target="_blank">
             <img src="/images/lanrails.png" border="0" alt="Powered by LANRails"/>
           </a>
