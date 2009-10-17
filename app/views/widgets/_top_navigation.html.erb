@@ -1,1 +1,14 @@
-This is top navigation!
+<ul>
+	<li><%= link_to 'Home', root_path %></li>
+	<li><%= link_to 'About' %></li>
+	<% if Party.current_party then %>
+		<li><%= link_to 'Register', party_registrations_path %></li>
+	<% end %>
+	<li><%= link_to 'Forums', forums_path %></li>
+	<li><%= link_to 'Staff', staff_path %></li>
+	<% if User.current && User.current.loggedin? then %>
+		<li><%= link_to 'My Profile', edit_account_path %></li>
+	<% elsif not Party.current_party %>
+		<li><%= link_to 'Register', new_account_path %></li>
+	<% end %>
+</ul>

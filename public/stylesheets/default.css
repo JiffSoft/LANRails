@@ -9,12 +9,25 @@
 body {
     background: #a3919f url('../images/default/background.jpg') top left repeat-x;
     margin: 0;
-    padding: 0
+    padding: 0;
+	color: white;
+	font-family: Helvetica, Courier New, Courier, Arial;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color: #74D4FF;
+	margin: 0;
+	padding: 0;
 }
 
 hr {
     border-top: 1px dashed white;
     border-bottom: none;
+}
+
+a {
+	color: #74D4FF;
+	text-decoration: underline;
 }
 
 #header {
@@ -32,13 +45,33 @@ hr {
     padding-bottom: 5px;
     padding-top: 10px;
     background: transparent url('../images/default/topnav.gif') left no-repeat;
+	text-align: center;
 }
 
 #main_nav li {
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 0px;
+    padding-right: 32px;
     font-size: 22px;
     height: 45px;
+	margin: 0;
+}
+
+#main_nav ul {
+	margin: 0;
+	padding: 0;
+}
+
+#main_nav li:first-child {
+	padding-left: 24px;
+}
+
+#main_nav a {
+	text-decoration: none;
+}
+
+#main_nav a:hover {
+	color: #DDF5FF;
+	text-decoration: underline;
 }
 
 #main {
@@ -51,12 +84,13 @@ hr {
     width: 154px;
     padding-left: 2px;
     padding-right: 2px;
+	padding-top: 10px;
     border-right: 1px dashed white;
 }
 
 #main_body {
-    width: 590px;
-    margin: 3px;
+    width: 580px;
+    margin: 8px;
 }
 
 #footer {
