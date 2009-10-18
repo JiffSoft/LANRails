@@ -1,11 +1,13 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-		<title><%= site_title %></title>
-        <%= stylesheet_link_tag "lanrails" %>
-        <%= stylesheet_link_tag Settings[:site_theme] %>
-		<%= include_tiny_mce_if_needed %>
+          <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+          <title><%= site_title %></title>
+          <%= stylesheet_link_tag "lanrails" %>
+          <%= stylesheet_link_tag Settings[:site_theme] %>
+          <%= javascript_include_tag 'prototype'  %>
+          <%= include_tiny_mce_if_needed %>
+          <%= calendar_date_select_includes %>
 	</head>
 	<body>
         <div id="header">

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090827161417) do
+ActiveRecord::Schema.define(:version => 20091018182639) do
 
   create_table "forums", :force => true do |t|
     t.string   "name"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(:version => 20090827161417) do
     t.integer  "maximum_registrations"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "paypal_address"
   end
 
   create_table "posts", :force => true do |t|

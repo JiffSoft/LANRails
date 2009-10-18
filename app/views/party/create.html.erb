@@ -1,2 +1,53 @@
-<h1>Party#create</h1>
-<p>Find me in app/views/party/create.html.erb</p>
+<h1>Create a Party</h1>
+<% form_for :party, @party, :url => {:controller => 'party', :action => 'create'} do |f| %>
+  <span class="error" style="text-align: center; margin: auto;">
+    <%= error_messages_for 'party', :header_message => "Please Try Again!", :message => "There were the following errors when trying to create the new party" %>
+  </span>
+  <table width="85%" align="center" border="0">
+    <tr>
+      <td><b>Party Name:</b></td>
+      <td><%= f.text_field :name, :size => 50 %></td>
+    </tr>
+    <tr>
+      <td valign="top"><b>Description:</b></td>
+      <td><%= f.text_area :description, :size => "5x15", :class => "mceEditor" %></td>
+    </tr>
+    <tr>
+      <td><b>Start:</b></td>
+      <td><%= calendar_date_select_tag :start_date, Time.now, :valid_date_check => "date.stripTime() > (new Date()).stripTime()", :time => true %></td>
+    </tr>
+    <tr>
+      <td><b>End:</b></td>
+      <td><%= calendar_date_select_tag :end_date, Time.now, :valid_date_check => "date.stripTime() > (new Date()).stripTime()", :time => true %></td>
+    </tr>
+    <tr>
+      <td><b>Address:</b></td>
+      <td><%= f.text_field :address, :size => 50 %></td>
+    </tr>
+    <tr>
+      <td><b>City, State:</b></td>
+      <td><%= f.text_field :city, :size => 42 %>,&nbsp;<%= f.text_field :stateprov, :size => 4, :maxlength => 2 %></td>
+    </tr>
+    <tr>
+      <td><b>ZIP:</b></td>
+      <td><%= f.text_field :zip, :size => 10, :maxlength => 6 %></td>
+    </tr>
+    <tr>
+      <td><b>Price:</b></td>
+      <td>$<%= f.text_field :price, :size => 12, :maxlength => 8 %></td>
+    </tr>
+    <tr>
+      <td><b>Max. Attendance:</b></td>
+      <td><%= f.text_field :maximum_registrations, :size => 12, :maxlength => 6 %></td>
+    </tr>
+    <tr>
+      <td><b>PayPal Email:</b></td>
+      <td><%= f.text_field :paypal_address, :size => 50 %></td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <%= submit_tag "Create" %>
+      </td>
+    </tr>
+  </table>
+<% end %>
