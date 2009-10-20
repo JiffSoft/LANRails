@@ -1,4 +1,8 @@
 class PostsController < ApplicationController
+  before_filter :require_login, :only => [:new, :create]
+  before_filter :check_post_edit, :only => [:edit, :update]
+  before_filter :check_post_del, :only => [:destroy]
+
   def index
   end
 
@@ -20,4 +24,12 @@ class PostsController < ApplicationController
   def destroy
   end
 
+private
+   def check_post_edit
+
+   end
+
+   def check_post_del
+
+   end
 end
