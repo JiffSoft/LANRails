@@ -9,10 +9,14 @@ class ForumsController < ApplicationController
     @threads = Thread.find_by_forum_id(params[:id])
   end
 
-  def edit
+  def new
+    render :action => 'create'
   end
 
   def create
+  end
+
+  def edit
   end
 
   def update
