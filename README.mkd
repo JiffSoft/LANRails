@@ -1,0 +1,76 @@
+# LANRails #
+#### *LAN Party Management - Rails Style!* ####
+
+LANRails is a LAN-party management solution written in _Ruby on Rails_, much like the PHP-based solution [ALP](http://www.nerdclub.net/alp/ "Autonomous Lan Party [ALP] Management Software").
+
+LANRails will include all standard features one out expect out of such a solution:
+
++   User Management
++   Party Registration
++   Pre-paid Entry Fees via [PayPal](http://www.paypal.com/)
++   Full-featured Discussion Forums
++   News, treated much like a blog
++   Staff Profiles
++   Sponsors
++   Tournament Management:
+
+    -   Registration
+    -   Team Management
+    -   Ladder Management
+    -   Prize Management
+
++   ...and more!
+
+---------
+
+## Requirements ##
+
+    - Rails Version 2.3.4
+    - SQLite3 or MySQL for database and necessary gem
+    - A PayPal business account to accept online pre-pay (_optional_)
+
+---------
+
+## Installation ##
+
+1. Clone the repository or unzip a downloaded archive
+2. Create your database and update `config/database.yml` accordingly
+3. Set up ActionMailer in your `config/environments/production.rb` (or development) file:
+    
+        ActionMailer::Base.delivery_method = :smtp
+        ActionMailer::Base.smtp_settings = {
+           :address => "servername.domain.com",
+           :port => 25,
+           :domain => "domain.com",
+           :authentication => :login,
+           :user_name => "login",
+           :password => "password"        
+
+4. Run `rake db:migrate`
+5. Start up the server as you usually would (mongrel, script/server, etc.)
+6. Register a new account
+7. From the command line run `rake lanrails:make_admin user_name='<YOUR USER NAME>'` to make your account an admin
+8. Log-in and have fun!
+
+---------
+
+## License ##
+
+LANRails is released under the MIT License and is copyright &copy; 2009 Jonathan Enzinna.  A copy of the license is available in the LICENSE file.
+
+---------
+
+## Support ##
+
+The LANRails website is at [http://lanrails.jonnyfunfun.com/](http://lanrails.jonnyfunfun.com/).
+
+An online demo is available and is constantly updated with the latest development code, approximately once every other day.  It can be accessed here:
+[http://demo.lanrails.jonnyfunfun.com/](http://demo.lanrails.jonnyfunfun.com/)
+
+Bugtracking via [Lighthouse](http://jonnyfunfun.lighthouseapp.com/projects/39522-lanrails/overview)
+
+---------
+
+## Themes ##
+
+Coming soon!
