@@ -31,5 +31,8 @@ ActionController::Routing::Routes.draw do |map|
   map.recover 'recover', :controller => 'accounts', :action => 'recover', :conditions => {:method => :post}
   map.staff 'staff', :controller => 'accounts', :action => 'staff', :conditions => {:method => :get}
 
+  # PayPal IPN
+  map.ipn 'ipn', :controller => 'paypal', :action => 'ipn', :conditions => {:method => :post}
+
   map.root :controller => "news"
 end
