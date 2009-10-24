@@ -26,15 +26,18 @@ class PartyController < ApplicationController
   end
 
   def edit
+    @party = Party.find(params[:id])
   end
 
   def show
+    @party = Party.find(params[:id])
   end
 
   def update
   end
 
   def destroy
+    Party.delete(params[:id])
   end
 
 end

@@ -10,7 +10,6 @@ Date.prototype.toFormattedString = function(include_time) {
     return str;
 };
 
-// TODO: take care of timezone offsets
 // as the timezone is not displayed in the input,
 // this could be tricky (or just unnessesary)
 Date.parseFormattedString = function (string) {

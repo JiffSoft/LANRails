@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091018182639) do
+ActiveRecord::Schema.define(:version => 20091023182528) do
 
   create_table "forums", :force => true do |t|
     t.string   "name"
@@ -63,9 +63,10 @@ ActiveRecord::Schema.define(:version => 20091018182639) do
   create_table "registrations", :force => true do |t|
     t.integer  "user_id"
     t.integer  "party_id"
-    t.boolean  "paid",       :default => false
+    t.boolean  "paid",                         :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "paypal_transid", :limit => 17
   end
 
   create_table "settings", :force => true do |t|
