@@ -14,3 +14,6 @@ frontpage_news_limit:
 
 site_theme:
   default: default
+
+paypal_address:
+  default: paypal@example.com

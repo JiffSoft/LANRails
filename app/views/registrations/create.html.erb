@@ -1,2 +1,8 @@
-<h1>Register For The LAN</h1>
-
+<h1>PrePay For The LAN</h1>
+You are registered for <%= @target_party.name %> but have not prepaid the registration fee.<br/>
+The registration fee for this party is $<%= @target_party.price %>. You can pre-pay your registration fee via PayPal.<br/>
+<% form_tag ipn_path %>
+  <%= paypal_setup @reg.id, @target_party.price, Settings[:paypal_address], :item_name => "#{@target_party.name} Registration for #{User.current_user.username}",
+    :return_url => url_for(:controller => 'registrations', :party_id => @target_party.id, :action => 'thank_you'), :cancel_url => url_for(root_path),
+    :notify_url => url_for(ipn_path) %>
+<% end_form_tag %>

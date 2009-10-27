@@ -1,0 +1,16 @@
+<h1>Register For The LAN</h1>
+You are registering for <%= @target_party.name %>
+  <% if Party.count > 1 then %>
+      <%= link_to "Different Party?", party_index_path, :class => 'small_link' %>
+  <% end %>
+<br/>
+<%= @target_party.description %>
+<br/>
+<% if @target_party.price > 0 then %>
+  The registration fee for this party is $<%= @target_party.price %>.  You will be shown options to pre-pay after confirming your registration.
+<% end %>
+<% form_for :registration, @registration, :url => {:controller => 'registrations', :action => 'create', :party_id => params[:party_id]} do |f| %>
+    <%= f.hidden_field_tag :party_id, params[:party_id] %>
+  <%= f.submit_tag 'Register Me!' %>
+<% end %>
+

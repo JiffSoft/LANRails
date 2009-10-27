@@ -1,7 +1,7 @@
 class NewsController < ApplicationController
   before_filter :require_moderator, :only => [:new, :update, :destroy, :edit, :create]
   uses_tiny_mce :options => {:theme => 'advanced'},
-    :only => [:new, :edit]
+    :only => [:new, :edit, :create, :update]
     
   def index
     @news = News.find(:all, :limit => Settings[:frontpage_news_limit],
@@ -17,14 +17,16 @@ class NewsController < ApplicationController
 
   def new
     @news = News.new
+    render :action => 'create'
   end
 
   def edit
     @news = News.find(params[:id])
+    render :action => 'update'
   end
 
   def update
-    @new
+    
   end
 
   def destroy
@@ -41,8 +43,6 @@ class NewsController < ApplicationController
     if @news.valid? && @news.save then
       # it's good!
       redirect_to news_path
-    else
-      render :action => 'new'
     end
   end
 end
