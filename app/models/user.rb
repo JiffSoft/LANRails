@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   require 'digest/sha1'
+  include SavageBeast::UserInit
 
   has_many :registrations
   has_many :news
@@ -69,6 +70,10 @@ class User < ActiveRecord::Base
     gravatar_url self.email, {:size => 25}
   end
 
+  def display_name
+    self.username
+  end
+
   def self.current
     #TODO anonymous stuff
     @me ||= nil
@@ -84,6 +89,10 @@ class User < ActiveRecord::Base
 
   def anonymous?
     !loggedin?
+  end
+
+  def registered?(party)
+    Registration.find_by_party_id_and_user_id(party,self.id) != nil rescue false
   end
   
   def complete_verification(code)

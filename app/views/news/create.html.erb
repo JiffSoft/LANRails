@@ -1,5 +1,5 @@
 <h1>Write a new news article</h1>
-<% form_for @news do |f| %>
+<% form_for :news, @news, :url => {:controller => 'news', :action => 'create'} do |f| %>
   <span class="error" style="text-align: center; margin: auto;">
       <%= error_messages_for 'news', :header_message => "Please Try Again!", :message => "There were the following errors when trying to create your account" %>
   </span>

@@ -1,18 +1,18 @@
 ActionController::Routing::Routes.draw do |map|
-  
-  # News
-  map.resources :news
-
   # Forums - what a mess!
-  map.resources :forums do |forum|
-    forum.resources :threads do |thread|
-      thread.resources :posts
-    end
-  end
+  #  map.resources :forums do |forum|
+  #    forum.resources :threads do |thread|
+  #      thread.resources :posts
+  #    end
+  #  end
+  map.from_plugin :savage_beast
 
   # Parties
   map.resources :party, :has_many => [:tournaments, :registrations]
   map.resources :tournaments, :has_many => [:prizes, :teams]
+
+  # News
+  map.resources :news
 
   # Account
   map.resource :account

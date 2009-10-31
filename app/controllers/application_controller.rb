@@ -4,6 +4,7 @@
 class ApplicationController < ActionController::Base
   require "base64"
   helper :all # include all helpers, all the time
+  include SavageBeast::AuthenticationSystem
   protect_from_forgery
 
   # Scrub sensitive parameters from your log
