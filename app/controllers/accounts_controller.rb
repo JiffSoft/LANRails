@@ -45,7 +45,7 @@ class AccountsController < ApplicationController
         else
           Postoffice.deliver_newuser_email(@user)
         end
-        render :partial => 'thankyou'
+        render :action => 'thankyou'
       end
     elsif @user.save
       # we're not using recaptcha
@@ -54,7 +54,7 @@ class AccountsController < ApplicationController
       else
         Postoffice.deliver_newuser_email(@user)
       end
-      render :partial => 'thankyou'
+      render :action => 'thankyou'
     end
   end
 
@@ -76,6 +76,10 @@ class AccountsController < ApplicationController
     Postoffice.deliver_newuser_email(@user)
   end
 
+  def thankyou
+    redirect_to root
+  end
+
   def recover
     if request.post?
       # populate verifycode, send the recovery email
@@ -95,15 +99,19 @@ class AccountsController < ApplicationController
     end
   end
 
+  def staff
+    
+  end
+
 private
   def try_login
     User.current = User.try_password_authentication(params[:username], params[:password])
     if User.current.nil?
       # invalid!
-      @login_error = "Invalid login!"
+      flash[:error] = "Invalid login credentials!"
     elsif User.current.status == User::STATUS_INACTIVE
       # we're not active yet!
-      @login_error = "Your e-mail has not yet been confirmed!"
+      flash[:warning] = "Your e-mail has not yet been confirmed!"
       User.current = nil
     else
       session[:user_id] = User.current.id

@@ -83,6 +83,7 @@ a {
 
 #left_bar {
     width: 154px;
+    height: 100%;
     padding-left: 2px;
     padding-right: 2px;
     padding-top: 10px;
@@ -116,4 +117,20 @@ a {
 .login_form {
     font-size: 12px;
     text-align: center;
+}
+
+p.notice,
+p.sections
+{
+	background:#df9;
+	padding:7px 15px;
+	border:1px solid #bd7;
+	margin-top:0;
+	font-size:0.8em;
+}
+
+p.error
+{
+  background:#c00;
+  color:white;
 }

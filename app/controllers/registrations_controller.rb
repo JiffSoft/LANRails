@@ -3,7 +3,7 @@ class RegistrationsController < ApplicationController
   before_filter :require_moderator, :only => [:edit, :update, :destroy, :show]
 
   def index
-    @regs = Registration.find_all_by_party_id(params[:party_id], :order => "created_on, paid DESC")
+    @regs = Registration.find_all_by_party_id(params[:party_id], :order => "created_at, paid DESC")
   end
 
   def show
@@ -49,6 +49,4 @@ class RegistrationsController < ApplicationController
     Registrations.delete(params[:id])
     redirect_to party_registrations_path, :party_id => params[:party_id]
   end
-  end
-
 end

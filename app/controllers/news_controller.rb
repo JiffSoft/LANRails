@@ -42,7 +42,7 @@ class NewsController < ApplicationController
     @news.user_id = User.current.id
     if @news.valid? && @news.save then
       # it's good!
-      redirect_to news_path
+      redirect_to news_index_path
     end
   end
 end

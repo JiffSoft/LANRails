@@ -85,6 +85,10 @@ class User < ActiveRecord::Base
   def anonymous?
     !loggedin?
   end
+
+  def registered?(party)
+    Registration.find_by_party_id_and_user_id(party,self.id) != nil rescue false
+  end
   
   def complete_verification(code)
     if code == self.verifycode
