@@ -1,2 +1,10 @@
-<h1>Party#show</h1>
-<p>Find me in app/views/party/show.html.erb</p>
+<h1><%= @party.name %></h1>
+<ul class="menu">
+  <li><%= link_to 'Register/Attendees', party_registrations_path %></li>
+  <li><%= link_to 'Tournaments', party_tournaments_path %></li>
+  <li><%= link_to 'Prizes/Swag', party_prizes_path %></li>
+  <% if User.current.admin? then %>
+    <li><%= link_to 'Edit', edit_party_path %></li>
+  <% end %>
+</ul>
+<p><%= @party.description %></p>

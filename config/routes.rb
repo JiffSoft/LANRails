@@ -11,8 +11,11 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   # Parties
-  map.resources :party, :has_many => [:tournaments, :registrations]
+  map.resources :party, :has_many => [:tournaments, :registrations, :prizes]
   map.resources :tournaments, :has_many => [:prizes, :teams]
+
+  # Sponsors
+  map.resources :sponsors, :has_many => [:prizes]
 
   # Account
   map.resource :account

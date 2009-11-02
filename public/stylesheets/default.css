@@ -66,6 +66,21 @@ a {
     padding-left: 24px;
 }
 
+.menu ul, li {
+    display: inline;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu li {
+    padding-left: 24px;
+}
+
+.menu li:first-child {
+    padding-left: 0;
+}
+
 #main_nav a {
     text-decoration: none;
 }

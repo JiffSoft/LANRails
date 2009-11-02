@@ -1,6 +1,6 @@
-<h1><%= Party.current_party.name %></h1>
+<h1><%= @party.name %></h1>
 <h3>Who's Coming?</h3>
-<div class="center"><p>There are currently <%= Party.current_party.registered_count %> people signed up to attend out of a maximum of <%= Party.current_party.maximum_registrations %></p></div>
+<div class="center"><p>There are currently <%= @party.registered_count %> people signed up to attend out of a maximum of <%= @party.maximum_registrations %></p></div>
 
 <table width="75%" align="center" cellspacing="0" cellpadding="2" border="1">
   <tr>
@@ -9,8 +9,16 @@
   </tr>
   <% @regs.each do |r| %>
   <tr>
-    <td><%= r.user.username %></td>
+    <td><%= if User.current && User.current.moderator? then link_to(r.user.username, party_registration_path(p)) else r.user.username end %></td>
     <td><%= r.created_at %></td>
   </tr>
   <% end %>
 </table>
+
+<% if User.current && !User.current.registered?(@party.id) then %>
+  <div class="center"><%= link_to 'Register Now!', new_party_registration_path %></div>
+<% elsif User.current then %>
+  <div class="center">You have already registered to attend!</div>
+<% else %>
+  <div class="center">Please <%= link_to 'create an account', new_account_path %> or <%= link_to 'login', login_path %> to register.</div>
+<% end %>
