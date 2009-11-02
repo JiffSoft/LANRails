@@ -1,2 +1,16 @@
-<h1>Registrations#index</h1>
-<p>Find me in app/views/registrations/index.html.erb</p>
+<h1><%= Party.current_party.name %></h1>
+<h3>Who's Coming?</h3>
+<div class="center"><p>There are currently <%= Party.current_party.registered_count %> people signed up to attend out of a maximum of <%= Party.current_party.maximum_registrations %></p></div>
+
+<table width="75%" align="center" cellspacing="0" cellpadding="2" border="1">
+  <tr>
+    <th>Username</th>
+    <th>Registered On</th>
+  </tr>
+  <% @regs.each do |r| %>
+  <tr>
+    <td><%= r.user.username %></td>
+    <td><%= r.created_at %></td>
+  </tr>
+  <% end %>
+</table>

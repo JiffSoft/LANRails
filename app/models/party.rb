@@ -7,4 +7,8 @@ class Party < ActiveRecord::Base
   def self.current_party
     Party.find(:last) rescue nil
   end
+
+  def registered_count
+    Registration.count_by_sql "SELECT COUNT(*) FROM registrations WHERE party_id = #{self.id}"
+  end
 end
