@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091023182528) do
+ActiveRecord::Schema.define(:version => 20091102191630) do
 
   create_table "forums", :force => true do |t|
     t.string   "name"
@@ -17,6 +17,8 @@ ActiveRecord::Schema.define(:version => 20091023182528) do
     t.integer  "access_required"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "posts_count",     :default => 0
+    t.integer  "threads_count",   :default => 0
   end
 
   create_table "games", :force => true do |t|
@@ -60,6 +62,14 @@ ActiveRecord::Schema.define(:version => 20091023182528) do
     t.datetime "updated_at"
   end
 
+  create_table "prizes", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "image"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "registrations", :force => true do |t|
     t.integer  "user_id"
     t.integer  "party_id"
@@ -76,13 +86,23 @@ ActiveRecord::Schema.define(:version => 20091023182528) do
     t.datetime "updated_at"
   end
 
+  create_table "sponsors", :force => true do |t|
+    t.string   "name"
+    t.string   "url"
+    t.string   "image"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "threads", :force => true do |t|
     t.integer  "user_id"
     t.integer  "forum_id"
     t.string   "title"
-    t.boolean  "locked",     :default => false
+    t.boolean  "locked",      :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "posts_count", :default => 0
+    t.integer  "sticky",      :default => 0
   end
 
   create_table "tournaments", :force => true do |t|
@@ -99,10 +119,11 @@ ActiveRecord::Schema.define(:version => 20091023182528) do
     t.string   "password"
     t.string   "email"
     t.text     "signature"
-    t.integer  "status",     :default => 0
+    t.integer  "status",      :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "verifycode"
+    t.integer  "posts_count", :default => 0
   end
 
 end

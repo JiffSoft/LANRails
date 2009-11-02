@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   has_many :threads
   has_many :posts, :through => :threads
 
+  attr_readonly :posts_count
+
   validates_presence_of :username, :message => "is required!"
   validates_uniqueness_of :username, :message => "is already registered!"
   validates_presence_of :password, :message => "is required!"
