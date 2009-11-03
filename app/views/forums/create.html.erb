@@ -1,5 +1,5 @@
 <h1>New Forum</h1>
-<% form_for @forum do |f| %>
+<% form_for :forum, @forum, :url => {:controller => 'forums', :action => 'create'} do |f| %>
   <span class="error" style="text-align: center; margin: auto;">
       <%= error_messages_for 'forum', :header_message => "Please Try Again!", :message => "There were the following errors when trying to create the new forum" %>
   </span>
@@ -10,9 +10,9 @@
   <div class="break"></div>
   <div align="center">
     <h5>Description:</h5>
-    <%= f.text_area :description, :size => "65x20",:class => "mceEditor" %><br />
+    <%= f.text_area :description, :size => "65x8",:class => "mceEditor" %><br />
     <h5>Access Required:
-      <%= f.select_tag :access_required, options_for_select({"Public" => 0, "Registered Only" => 1, "Moderators Only" => 2, "Admins Only" => 3}) %>
+      <%= f.select :access_required, options_for_select({"Public" => 0, "Registered Only" => 1, "Moderators Only" => 2, "Admins Only" => 3}) %>
     </h5>
     <%= f.submit "Create Forum" %>
   </div>

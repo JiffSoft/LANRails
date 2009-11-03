@@ -1,0 +1,4 @@
+<h1>Edit My Profile</h1>
+<% form_for @user, :url => {:controller => 'accounts', :action => 'update'} do |f| %>
+  <br/><div class="center"><%= f.submit 'Save Changes' %></div>
+<% end %>

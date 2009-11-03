@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091102191630) do
+ActiveRecord::Schema.define(:version => 20091103171331) do
 
   create_table "forums", :force => true do |t|
     t.string   "name"
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(:version => 20091102191630) do
   end
 
   create_table "posts", :force => true do |t|
-    t.integer  "thread_id"
+    t.integer  "topic_id"
     t.integer  "user_id"
     t.text     "body"
     t.datetime "created_at"
@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(:version => 20091102191630) do
     t.datetime "updated_at"
   end
 
-  create_table "threads", :force => true do |t|
+  create_table "topics", :force => true do |t|
     t.integer  "user_id"
     t.integer  "forum_id"
     t.string   "title"

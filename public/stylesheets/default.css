@@ -62,22 +62,22 @@ a {
     padding: 0;
 }
 
-#main_nav li:first-child {
-    padding-left: 24px;
+#main_nav li:last-child {
+    padding-right: 0;
 }
 
-.menu ul, li {
+.inline_menu ul, .inline_menu li {
     display: inline;
     list-style-type: none;
     padding: 0;
     margin: 0;
 }
 
-.menu li {
+.inline_menu li {
     padding-left: 24px;
 }
 
-.menu li:first-child {
+.inline_menu li:first-child {
     padding-left: 0;
 }
 

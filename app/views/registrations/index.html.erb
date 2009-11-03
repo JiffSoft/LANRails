@@ -9,7 +9,7 @@
   </tr>
   <% @regs.each do |r| %>
   <tr>
-    <td><%= if User.current && User.current.moderator? then link_to(r.user.username, party_registration_path(p)) else r.user.username end %></td>
+    <td><%= if User.current && User.current.moderator? then link_to(r.user.username, party_registration_path(:party_id => @party.id, :id => r)) else r.user.username end %></td>
     <td><%= r.created_at %></td>
   </tr>
   <% end %>

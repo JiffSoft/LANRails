@@ -1,5 +1,6 @@
 class ForumsController < ApplicationController
   before_filter :require_administrator, :only => [:create, :edit, :update, :destroy]
+  uses_tiny_mce :only => [:new, :create, :edit]
 
   def index
     @forums = Forum.find(:all)

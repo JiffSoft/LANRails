@@ -3,16 +3,18 @@ class RegistrationsController < ApplicationController
   before_filter :require_moderator, :only => [:edit, :update, :destroy, :show]
 
   def index
+    @party = Party.find(params[:party_id])
     @regs = Registration.find_all_by_party_id(params[:party_id], :order => "created_at, paid DESC")
   end
 
   def show
+    @party = Party.find(params[:party_id])
     @reg = Registration.find(params[:id])
   end
 
   def new
+    @party = Party.find(params[:party_id])
     @target_party = Party.find(params[:party_id])
-    render :action => 'create'
   end
 
   def create
@@ -22,6 +24,7 @@ class RegistrationsController < ApplicationController
     else
       @target_party = Party.find(params[:party_id])
       @reg = Registration.new(params[:registration])
+      @reg.party_id = params[:party_id]
       @reg.user_id = User.current.id
       @reg.save
       if @target_party.price > 0 then

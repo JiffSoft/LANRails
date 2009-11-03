@@ -1,9 +1,10 @@
-class Thread < ActiveRecord::Base
+class Topic < ActiveRecord::Base
   belongs_to :user
-  belongs_to :forum, :counter_cache => true, :dependent => :delete_all
+  belongs_to :forum, :counter_cache => true
   has_many :posts
 
-  validates_length_of :title, :maximum => 64, :minimum => 4
+  validates_length_of :title, :maximum => 64
+  validates_length_of :title, :minimum => 4
 
   MAXIMUM_POSTS_PER_PAGE = 25
 
@@ -12,7 +13,7 @@ class Thread < ActiveRecord::Base
   end
 
   def paged?
-    pages > Thread::MAXIMUM_POSTS_PER_PAGE
+    pages > Topic::MAXIMUM_POSTS_PER_PAGE
   end
 
   def pages

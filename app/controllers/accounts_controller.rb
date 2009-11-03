@@ -1,6 +1,7 @@
 class AccountsController < ApplicationController
   require "base64"
   require "digest/sha1"
+  before_filter :require_login, :only => [:edit, :update]
   uses_tiny_mce :only => [:profile] # for signature
   
   def show
@@ -100,6 +101,14 @@ class AccountsController < ApplicationController
   end
 
   def staff
+    
+  end
+
+  def edit
+    @user = User.current
+  end
+
+  def update
     
   end
 

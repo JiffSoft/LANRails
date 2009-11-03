@@ -1,6 +1,6 @@
 class Forum < ActiveRecord::Base
-  has_many :threads, :order => "#{Thread.table_name}.sticky DESC, #{Thread.table_name}.updated_at DESC", :dependent => :delete_all
-  has_many :posts, :through => :threads, :dependent => :delete_all
+  has_many :topics, :order => "#{Topic.table_name}.sticky DESC, #{Topic.table_name}.updated_at DESC", :dependent => :delete_all
+  has_many :posts, :through => :topics, :dependent => :delete_all
 
   ACCESS_EVERYBODY = 0
   ACCESS_REGISTERED = 1

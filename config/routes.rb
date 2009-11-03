@@ -5,8 +5,8 @@ ActionController::Routing::Routes.draw do |map|
 
   # Forums - what a mess!
   map.resources :forums do |forum|
-    forum.resources :threads do |thread|
-      thread.resources :posts
+    forum.resources :topics do |topic|
+      topic.resources :posts
     end
   end
 
@@ -25,6 +25,7 @@ ActionController::Routing::Routes.draw do |map|
   map.site_settings 'admin/site_settings', :controller => 'admin', :action => 'save_settings', :conditions => {:method => :post}
 
   # Custom shizzy
+  map.thank_you 'party/:party_id/registrations/thank_you', :controller => 'registrations', :action => 'thank_you'
   map.profile 'user/:user_id', :controller => 'accounts', :action => 'view'
   map.logout 'logout', :controller => 'accounts', :action => 'logout'
   map.login 'login', :controller => 'accounts', :action => 'login', :conditions => {:method => :post}
