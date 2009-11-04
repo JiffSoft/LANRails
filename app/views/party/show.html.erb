@@ -1,8 +1,10 @@
 <h1><%= @party.name %></h1>
 <ul class="inline_menu">
   <li><%= link_to 'Register/Attendees', party_registrations_path %></li>
-  <li><%= link_to 'Tournaments', party_tournaments_path %></li>
-  <li><%= link_to 'Prizes/Swag', party_prizes_path %></li>
+  <% if Settings[:enable_tournaments].match(/(true|t|yes|y|1)$/i) != nil %>
+    <li><%= link_to 'Tournaments', party_tournaments_path %></li>
+    <li><%= link_to 'Prizes/Swag', party_prizes_path %></li>
+  <% end %>
   <% if User.current.admin? then %>
     <li><%= link_to 'Edit', edit_party_path %></li>
   <% end %>

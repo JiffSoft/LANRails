@@ -3,8 +3,8 @@
 	<head>
           <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
           <title><%= site_title %></title>
-          <%= stylesheet_link_tag "lanrails" %>
-          <%= stylesheet_link_tag Settings[:site_theme] %>
+          <%= stylesheet_link_tag "default" %>
+          <%= stylesheet_link_tag "themes/#{Settings[:site_theme]}" %>
           <%= javascript_include_tag 'prototype'  %>
           <%= include_tiny_mce_if_needed %>
           <%= calendar_date_select_includes %>

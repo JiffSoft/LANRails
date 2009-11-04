@@ -11,7 +11,9 @@ This is left navigation!
   <b>Admin Panel:</b><br/>
   <ul>
     <li><%= link_to 'New Party', new_party_path %></li>
-    <li><%= link_to 'New Forum', new_forum_path %></li>
+    <% if Settings[:enable_forums].match(/(true|t|yes|y|1)$/i) != nil %>
+      <li><%= link_to 'New Forum', new_forum_path %></li>
+    <% end %>
     <li><%= link_to 'Site Settings', site_settings_path %></li>
   </ul>
 <% end %>

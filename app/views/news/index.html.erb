@@ -7,7 +7,7 @@
       <td class="news_body"><%= n.body %></td>
     </tr>
     <tr>
-      <td class="news_footer">Posted at <%= n.created_at %> by <%= n.user.username %></td>
+      <td class="news_footer">Posted at <%= n.created_at %> by <%= link_to n.user.username, profile_path(n.user) %></td>
     </tr>
   </table>
 <% end %>

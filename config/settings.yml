@@ -1,19 +1,44 @@
 # LANRails settings and defaults
+# how they are displayed here, top down is how they will display in the
+# site_settings page
 
 site_title:
   default: LANRails
- 
+  friendly: Site Title
+
+site_theme:
+  default: lanrails
+  friendly: Site Theme
+  type: theme_picker
+
 require_newacct_activation:
   default: false
+  friendly: Require Account Activation
+  type: boolean
 
 email_from:
   default: noreply@example.com
+  friendly: Send Mail As
 
 frontpage_news_limit:
   default: 5
+  friendly: News On Front Page
 
-site_theme:
-  default: default
+enable_paypal:
+  default: true
+  friendly: Enable PayPal
+  type: boolean
 
 paypal_address:
   default: paypal@example.com
+  friendly: PayPal Email
+
+enable_forums:
+  default: true
+  friendly: Enable Forums
+  type: boolean
+
+enable_tournaments:
+  default: true
+  friendly: Enable Tournaments
+  type: boolean

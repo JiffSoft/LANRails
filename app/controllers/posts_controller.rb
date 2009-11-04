@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_filter :check_forums_enabled
   before_filter :require_login, :only => [:new, :create]
   before_filter :check_post_edit, :only => [:edit, :update]
   before_filter :check_post_del, :only => [:destroy]
@@ -33,4 +34,8 @@ private
    def check_post_del
 
    end
+
+  def check_forums_enabled
+    redirect_to root_path if Settings[:enable_forums].match(/(true|t|yes|y|1)$/i) == nil
+  end
 end

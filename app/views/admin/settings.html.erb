@@ -1,2 +1,22 @@
 <h1>Site Settings</h1>
-
+<% form_for :settings, @settings, :url => {:controller => 'admin', :action => 'save_settings'} do |f| %>
+<table width="98%" border="0">
+  <% @settings.keys.each do |s| %>
+    <tr>
+      <td><%= @settings[s]["friendly"] %></td>
+      <td>
+        <% if @settings[s]["type"] then %>
+          <% if @settings[s]["type"] == "boolean" %>
+              <%= f.check_box s, :checked => Settings[s].match(/(true|t|yes|y|1)$/i) != nil %>
+          <% elsif @settings[s]["type"] == "theme_picker" then %>
+                  <%= select_tag "settings[#{s}]", options_for_select(@themes) %>
+          <% end %>
+        <% else %>
+          <%= f.text_field s, :value => Settings[s] %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+  <% f.submit 'Save Settings'  %>
+<% end %>

@@ -1,0 +1,170 @@
+/* 
+    Document   : default
+    Created on : Oct 14, 2009, 1:47:23 PM
+    Author     : jonathan.enzinna
+    Description:
+        Default LANRails style.
+*/
+
+body {
+    background: #a3919f url('../../images/lanrails/background.jpg') top left repeat-x;
+    margin: 0;
+    padding: 0;
+    color: white;
+    font-family: Helvetica, Courier New, Courier, Arial;
+    font-size: 12px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #74D4FF;
+    margin: 0;
+    padding: 0;
+}
+
+hr {
+    border-top: 1px dashed white;
+    border-bottom: none;
+}
+
+a {
+    color: #74D4FF;
+    text-decoration: underline;
+}
+
+#header {
+    width: 756px;
+    margin: auto;
+}
+
+#site_banner {
+    height: 131px;
+    background: transparent url('../../images/lanrails/header.jpg') top center no-repeat;
+}
+
+#main_nav {
+    height: 35px;
+    padding-bottom: 5px;
+    padding-top: 10px;
+    background: transparent url('../../images/lanrails/topnav.gif') left no-repeat;
+    text-align: center;
+}
+
+#main_nav li {
+    padding-left: 0px;
+    padding-right: 32px;
+    font-size: 22px;
+    height: 45px;
+    margin: 0;
+}
+
+#main_nav ul {
+    margin: 0;
+    padding: 0;
+}
+
+#main_nav li:last-child {
+    padding-right: 0;
+}
+
+.inline_menu ul, .inline_menu li {
+    display: inline;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.inline_menu li {
+    padding-left: 24px;
+}
+
+.inline_menu li:first-child {
+    padding-left: 0;
+}
+
+#main_nav a {
+    text-decoration: none;
+}
+
+#main_nav a:hover {
+    color: #DDF5FF;
+    text-decoration: underline;
+}
+
+#main {
+    width: 756px;
+    margin: auto;
+    background: #044a74;
+}
+
+#left_bar {
+    width: 154px;
+    height: 100%;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-top: 10px;
+    border-right: 1px dashed white;
+}
+
+#main_body {
+    width: 580px;
+    margin: 8px;
+}
+
+#footer {
+    width: 756px;
+    padding-top: 14px;
+    min-height: 66px;
+    margin: auto;
+    background: transparent url('../../images/lanrails/footer.png') top center no-repeat;
+    color: white;
+    font-size: 10px;
+}
+
+#footer a {
+    color: #8D8DFF;
+    text-decoration: none;
+}
+
+.news_table {
+    width: 75%;
+    border: 0;
+    margin-bottom: 20px;
+}
+
+.news_title {
+    font-size: 18px;
+    border-bottom: 1px solid white;
+}
+
+.news_footer {
+    font-size: 9px;
+}
+
+.login_input {
+    width: 96%;
+}
+
+.login_form {
+    font-size: 12px;
+    text-align: center;
+}
+
+.center {
+    text-align: center;
+}
+
+p.notice,
+p.sections
+{
+	background:#df9;
+	padding:7px 15px;
+	border:1px solid #bd7;
+	margin-top:0;
+	font-size:0.8em;
+}
+
+p.error
+{
+  background:#c00;
+  color:white;
+}

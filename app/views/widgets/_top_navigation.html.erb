@@ -3,7 +3,9 @@
 	<% if Party.current_party then %>
 		<li><%= link_to 'Register', party_registrations_path(:party_id => Party.current_party.id) %></li>
 	<% end %>
-	<li><%= link_to 'Forums', forums_path %></li>
+    <% if Settings[:enable_forums].match(/(true|t|yes|y|1)$/i) != nil then %>
+      <li><%= link_to 'Forums', forums_path %></li>
+    <% end %>
 	<li><%= link_to 'Staff', staff_path %></li>
 	<li><%= link_to 'Sponsors', sponsors_path %></li>
 	<% if User.current && User.current.loggedin? then %>
