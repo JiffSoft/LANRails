@@ -4,6 +4,7 @@ This is left navigation!
   <b>Moderators:</b><br/>
   <ul>
     <li><%= link_to 'New News Article', new_news_path %></li>
+    <li><%= link_to 'New Sponsor', new_sponsor_path %></li>
   </ul>
 <% end %>
 <% if User.current && User.current.admin? %>

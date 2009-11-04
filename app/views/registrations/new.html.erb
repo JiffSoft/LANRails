@@ -9,6 +9,7 @@ You are registering for <%= @party.name %>
 <% if @party.price > 0 then %>
   The registration fee for this party is $<%= @party.price %>.  You will be shown options to pre-pay after confirming your registration.
 <% end %>
+<%= error_messages_for 'registration', :header_message => "Unable to Register!", :message => "There were the following errors when trying to register you" %>
 <% form_for :registration, @registration, :url => {:controller => 'registrations', :action => 'create', :party_id => params[:party_id]} do |f| %>
   <%= f.submit 'Register Me!' %>
 <% end %>

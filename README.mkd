@@ -45,10 +45,11 @@ LANRails will include all standard features one out expect out of such a solutio
            :password => "password"        
 
 4. Run `rake db:migrate`
-5. Start up the server as you usually would (mongrel, script/server, etc.)
-6. Register a new account
-7. From the command line run `rake lanrails:make_admin user_name='<YOUR USER NAME>'` to make your account an admin
-8. Log-in and have fun!
+5. CHMOD the `public/uploads` directory to allow for read/write access
+6. Start up the server as you usually would (mongrel, script/server, etc.)
+7. Register a new account
+8. From the command line run `rake lanrails:make_admin user_name='<YOUR USER NAME>'` to make your account an admin
+9. Log-in and have fun!
 
 
 ## License ##

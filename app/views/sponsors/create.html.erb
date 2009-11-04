@@ -1,2 +1,26 @@
-<h1>Sponsors#create</h1>
-<p>Find me in app/views/sponsors/create.html.erb</p>
+<h1>New Sponsor</h1>
+<% form_for :sponsor, @sponsor, :url => {:controller => 'sponsors', :action => 'create'}, :html => {:multipart => true} do |f| %>
+  <span class="error" style="text-align: center; margin: auto;">
+      <%= error_messages_for 'sponsor', :header_message => "Please Try Again!", :message => "There were the following errors when trying to create the sponsor" %>
+  </span>
+  <table width="75%" align="center" border="0">
+    <tr>
+      <td><b>Name:</b></td>
+      <td><%= f.text_field :name, :size => 25 %></td>
+    </tr>
+    <tr>
+      <td><b>Image:</b></td>
+      <td><%= f.file_field :image, :size => 25 %></td>
+    </tr>
+    <tr>
+      <td><b>URL:</b></td>
+      <td><%= f.text_field :url, :size => 25 %></td>
+    </tr>
+    <tr>
+      <td colspan="2" class="center">
+        <%= submit_tag "Register" %>
+      </td>
+    </tr>
+  </table>
+<% end %>
+

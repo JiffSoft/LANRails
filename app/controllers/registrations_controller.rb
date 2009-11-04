@@ -26,11 +26,14 @@ class RegistrationsController < ApplicationController
       @reg = Registration.new(params[:registration])
       @reg.party_id = params[:party_id]
       @reg.user_id = User.current.id
-      @reg.save
-      if @target_party.price > 0 then
-        render :action => 'prepay'
+      if @reg.save then
+        if @target_party.price > 0 then
+          render :action => 'prepay'
+        else
+          render :action => 'thank_you'
+        end
       else
-        render :action => 'thank_you'
+        render :action => 'new'
       end
     end
   end
@@ -46,6 +49,7 @@ class RegistrationsController < ApplicationController
   end
 
   def update
+    
   end
 
   def destroy
