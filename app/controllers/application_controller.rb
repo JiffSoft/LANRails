@@ -13,6 +13,10 @@ class ApplicationController < ActionController::Base
 
   def start
     Settings.check_cache
+    if Settings[:enable_recaptcha].match(/(true|t|yes|y|1)$/i) != nil then
+      ENV['RECAPTCHA_PUBLIC_KEY'] = Settings[:recaptcha_public]
+      ENV['RECAPTCHA_PRIVATE_KEY'] = Settings[:recaptcha_private]
+    end
     User.current = check_current_session
   end
 

@@ -38,7 +38,7 @@ class AccountsController < ApplicationController
     else
       @user.status = User::STATUS_REGISTERED
     end
-    if ENV['RECAPTCHA_PUBLIC_KEY']
+    if Settings[:enable_recaptcha].match(/(true|t|yes|y|1)$/i) != nil
       # save with recaptcha
       if (verify_recaptcha(@user) && @user.save)
         if (Settings[:require_newacct_activation] == 'true')

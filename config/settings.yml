@@ -16,6 +16,19 @@ require_newacct_activation:
   friendly: Require Account Activation
   type: boolean
 
+enable_recaptcha:
+  default: true
+  friendly: Enable reCaptcha
+  type: boolean
+
+recaptcha_public:
+  default: 6Le2BAQAAAAAAAqblFVvt6bxirIW-c9PXyC9VLTm
+  friendly: reCaptcha Public Key
+
+recaptcha_private:
+  default: 6Le2BAQAAAAAAMJrxlnxsXbrJB7Cp-wCixhRJLSm
+  friendly: reCaptcha Private Key
+
 email_from:
   default: noreply@example.com
   friendly: Send Mail As

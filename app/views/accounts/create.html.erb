@@ -21,7 +21,7 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<% if ENV['RECAPTCHA_PUBLIC_KEY'] %>
+				<% if Settings[:enable_recaptcha].match(/(true|t|yes|y|1)$/i) != nil %>
 					<%= recaptcha_tags %>
 				<% end %>
 				<br/>

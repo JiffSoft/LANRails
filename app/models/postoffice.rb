@@ -26,4 +26,25 @@ class Postoffice < ActionMailer::Base
     subject "#{Settings[:site_title]} - Your New Password"
     body :user => user, :password => newpass
   end
+
+  def party_registration_email(user, party, registration)
+    recipients user.email
+    from Settings[:email_from]
+    subject "#{party.name} Registration Confirmation"
+    body :user => user, :party => party, :reg => registration
+  end
+
+  def party_prepay_complete_email(user, party, registration)
+    recipients user.email
+    from Settings[:email_from]
+    subject "#{party.name} Pre-Pay Confirmation"
+    body :user => user, :party => party, :reg => registration
+  end
+
+  def party_prepay_warning_email(user, party, registration)
+    recipients user.email
+    from Settings[:email_from]
+    subject "#{party.name} Pre-Pay Confirmation"
+    body :user => user, :party => party, :reg => registration
+  end
 end

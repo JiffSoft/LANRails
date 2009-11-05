@@ -27,6 +27,7 @@ class RegistrationsController < ApplicationController
       @reg.party_id = params[:party_id]
       @reg.user_id = User.current.id
       if @reg.save then
+        Postoffice.deliver_party_registration_email(User.current,@target_party,@reg)
         if @target_party.price > 0 then
           render :action => 'prepay'
         else
