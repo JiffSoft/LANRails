@@ -1,2 +1,11 @@
-<h1>Account#staff</h1>
-<p>Find me in app/views/account/staff.html.erb</p>
+<h1>Staff</h1>
+<% @staff.each do |s| %>
+  <div class="staff_entry">
+    <div class="float_left"><%= s.avatar %></div>
+    <div class="float_left">
+      <h3><%= link_to s.username, profile_path(s) %></h3>
+      <%= s.bio if s.bio.length > 0 %>
+    </div>
+    <div class="break"></div>
+  </div>
+<% end %>

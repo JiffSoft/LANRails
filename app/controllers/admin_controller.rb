@@ -11,6 +11,12 @@ class AdminController < ApplicationController
   end
 
   def save_settings
-    
+    @settings = YAML::load(File.open("#{RAILS_ROOT}/config/settings.yml"))
+    @settings.keys.each do |s|
+      Settings[s] = params[:settings][s]
+    end
+    Settings.check_cache
+    flash[:warning] = "Settings saved successfully!"
+    render :action => 'settings'
   end
 end

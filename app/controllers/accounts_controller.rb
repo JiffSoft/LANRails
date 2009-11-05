@@ -101,7 +101,7 @@ class AccountsController < ApplicationController
   end
 
   def staff
-    
+    @staff = User.find_by_sql "SELECT * FROM #{User.table_name} WHERE status >= #{User::STATUS_MODERATOR}"
   end
 
   def edit
