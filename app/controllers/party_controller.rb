@@ -3,12 +3,10 @@ class PartyController < ApplicationController
   uses_tiny_mce :options => {:theme => 'advanced'}, :only => [:create, :new]
 
   def index
-    if not User.current && User.current.admin? then
-      if Party.current_party then
-        redirect_to show_party_path, :party_id => Party.current_party.id
-      else
-        redirect_to root_path
-      end
+    if Party.current_party then
+      redirect_to show_party_path, :party_id => Party.current_party.id
+    else
+      redirect_to root_path
     end
   end
 

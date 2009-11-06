@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091103171331) do
+ActiveRecord::Schema.define(:version => 20091105181004) do
 
   create_table "forums", :force => true do |t|
     t.string   "name"
@@ -124,6 +124,7 @@ ActiveRecord::Schema.define(:version => 20091103171331) do
     t.datetime "updated_at"
     t.text     "verifycode"
     t.integer  "posts_count", :default => 0
+    t.text     "bio"
   end
 
 end

@@ -109,7 +109,10 @@ class AccountsController < ApplicationController
   end
 
   def update
-    
+    if !@user.valid? or !@user.save then
+      flash[:error] = "There was an error saving your profile!"
+      render :action => 'edit'
+    end
   end
 
 private
