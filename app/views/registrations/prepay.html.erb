@@ -1,7 +1,7 @@
 <h1>PrePay For The LAN</h1>
-You are registered for <%= @target_party.name %> but have not prepaid the registration fee.<br/>
-The registration fee for this party is $<%= @target_party.price %>. You can pre-pay your registration fee via PayPal.<br/>
+You are registered for <%= @party.name %> but have not prepaid the registration fee.<br/>
+The registration fee for this party is $<%= @party.price %>. You can pre-pay your registration fee via PayPal.<br/>
 <form action="https://www.paypal.com/us/cgi-bin/webscr" method="POST">
-  <%= paypal_setup @reg.id, @target_party.price, Settings[:paypal_address], :item_name => "#{@target_party.name} Registration for #{User.current.username}", :notify_url => url_for(ipn_path) %>
-  <%= submit_tag 'Pay Now' %>
+  <%= paypal_setup @reg.id, @party.price, Settings[:paypal_address], :item_name => "#{@party.name} Registration for #{User.current.username}", :notify_url => url_for(ipn_path) %>
+  <%= submit_tag 'Pay Now', :class => 'btn' %>
 </form>

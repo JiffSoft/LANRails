@@ -1,2 +1,23 @@
-<h1>Forum#index</h1>
-<p>Find me in app/views/forum/index.html.erb</p>
+<h1>Forums</h1>
+<% if @forums.length == 0 then %>
+  <p>There are no forums available.</p>
+<% else %>
+  <table class="forum_table">
+    <tr>
+      <th>Forum Name</th>
+      <th>Posts</th>
+      <th>Threads</th>
+    </tr>
+    <% @forums.each do |f| %>
+      <% if f.has_access?(User.current) then %>
+        <tr>
+          <td><%= link_to f.name, forum_topics_path(:forum_id => f.id) %>
+            <%= '<div class="forum_desc">' + f.description + '</div>' if f.description.to_s.length > 0 %>
+          </td>
+          <td class="center"><%= f.post_count %></td>
+          <td class="center"><%= f.topic_count %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
+<% end %>

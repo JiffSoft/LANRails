@@ -20,7 +20,7 @@ module GravatarHelper
     
     # The maximum allowed MPAA rating for gravatars. This allows you to 
     # exclude gravatars that may be out of character for your site.
-    :rating => 'PG',
+    :rating => 'R',
     
     # The alt text to use in the img tag for the gravatar.  Since it's a
     # decorational picture, the alt text should be empty according to the

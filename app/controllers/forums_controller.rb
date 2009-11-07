@@ -16,6 +16,10 @@ class ForumsController < ApplicationController
   end
 
   def create
+    @forum = Forum.new(params[:forum])
+    if @forum.valid? and @forum.save then
+      redirect_to forums_path
+    end
   end
 
   def edit

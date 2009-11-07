@@ -2,9 +2,11 @@
   <% form_tag(login_path, :class => 'login_form') do %>
     <b>Username:</b><br/><%= text_field nil, :username, :class => 'login_input login_username_box' %><br />
     <b>Password:</b><br/><%= password_field nil, :password, :class => 'login_input login_password_box' %><br />
-    <%= submit_tag 'Login', :class => 'float_left login_button' %>
-    <% end %>
-    <%= button_to 'Register', new_account_path, :method => :get, :class => 'float_left register_button' %>
+    <div class="center" style="padding-top: 4px;">
+      <%= submit_tag 'Login', :class => 'float_left login_button btn' %>
+      <% end %>
+      <%= button_to 'Register', new_account_path, :method => :get, :class => 'float_right register_button btn' %>
+    </div>
     <div class="break"></div>
 <% else %>
   Welcome back<br/>

@@ -3,8 +3,8 @@ class User < ActiveRecord::Base
 
   has_many :registrations
   has_many :news
-  has_many :threads
-  has_many :posts, :through => :threads
+  has_many :topics
+  has_many :posts
 
   attr_readonly :posts_count
 
@@ -61,14 +61,6 @@ class User < ActiveRecord::Base
   
   def self.password_hash(str)
     return Digest::SHA1.hexdigest(str)
-  end
-  
-  def avatar
-    gravatar_for self, {:size => 25}
-  end
-  
-  def avatar_url
-    gravatar_url self.email, {:size => 25}
   end
 
   def self.current

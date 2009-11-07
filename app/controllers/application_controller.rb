@@ -3,6 +3,7 @@
 
 class ApplicationController < ActionController::Base
   require "base64"
+  require 'gravatar'
   helper :all # include all helpers, all the time
   protect_from_forgery
 

@@ -9,4 +9,6 @@
     <li><%= link_to 'Edit', edit_party_path %></li>
   <% end %>
 </ul>
+<br/>
+<p class="center">There are currently <%= @party.registrations.count %> people registered out of <%= @party.maximum_attendence %> spots.</p>
 <p><%= @party.description %></p>

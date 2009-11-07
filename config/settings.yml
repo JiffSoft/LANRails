@@ -17,7 +17,7 @@ require_newacct_activation:
   type: boolean
 
 enable_recaptcha:
-  default: true
+  default: false
   friendly: Enable reCaptcha
   type: boolean
 

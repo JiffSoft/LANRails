@@ -1,10 +1,10 @@
-<h1>Staff</h1>
+<h1>Staff</h1><br/>
 <% @staff.each do |s| %>
   <div class="staff_entry">
-    <div class="float_left"><%= s.avatar %></div>
+    <div class="float_left" style="padding-right: 8px;"><%= gravatar_for(s) %></div>
     <div class="float_left">
       <h3><%= link_to s.username, profile_path(s) %></h3>
-      <%= s.bio if s.bio.length > 0 %>
+      <%= s.bio if s.bio.to_s.length > 0 %>
     </div>
     <div class="break"></div>
   </div>

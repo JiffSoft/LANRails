@@ -1,6 +1,5 @@
 <h1>Site Settings</h1>
 <% form_for :settings, @settings, :url => {:controller => 'admin', :action => 'save_settings'} do |f| %>
-<% f.submit 'Save Settings' %>
 <table width="98%" border="0">
   <% @settings.keys.each do |s| %>
     <tr>
@@ -19,4 +18,5 @@
     </tr>
   <% end %>
 </table>
+<%= f.submit 'Save Settings', :class => 'float_right' %>
 <% end %>

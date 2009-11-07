@@ -1,2 +1,19 @@
-<h1>Post#index</h1>
-<p>Find me in app/views/post/index.html.erb</p>
+<h1><%= link_to 'Forums', forums_path %> &raquo; <%= link_to @forum.name, forum_topics_path(:forum_id => @forum.id) %> &raquo; <%=  @topic.title %></h1>
+<br/>
+<% @posts.each do |p| %>
+<table class="post_table">
+  <tr>
+    <td class="post_table_userinfo" valign="top">
+      <img src="<%= gravatar_url(p.user.email, :size => 80) %>"/><br/>
+      <%= link_to p.user.username, profile_path(:user_id => p.user_id) %>
+    </td>
+    <td valign="top">
+      <span class="posted_time">Posted at <%= p.created_at %></span><br/><hr/>
+      <%= p.body %>
+    </td>
+  </tr>
+</table><br/>
+<% end %>
+<% if User.current && User.current.loggedin? && @topic.locked == false then %>
+  <%= button_to 'Post Reply', new_forum_topic_post_path, :class => 'float_right btn', :method => :get %>
+<% end %>

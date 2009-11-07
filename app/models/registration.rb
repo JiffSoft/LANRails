@@ -6,9 +6,10 @@ class Registration < ActiveRecord::Base
   validate :party_can_register
 
 protected
-  def party_can_regsiter
-    errors.add_to_base("This party has happened already!") if party.done?
-    errors.add_to_base("This party is currently happening!") if party.running?
+  def party_can_register
+    p = Party.find(party_id)
+    errors.add_to_base("This party has happened already!") if p.past?
+    errors.add_to_base("This party is currently happening!") if p.running?
   end
 end
 

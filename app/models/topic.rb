@@ -5,6 +5,8 @@ class Topic < ActiveRecord::Base
 
   validates_length_of :title, :maximum => 64
   validates_length_of :title, :minimum => 4
+  validates_presence_of :user_id
+  validates_presence_of :forum_id
 
   MAXIMUM_POSTS_PER_PAGE = 25
 

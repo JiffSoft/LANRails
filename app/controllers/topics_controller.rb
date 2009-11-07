@@ -5,13 +5,30 @@ class TopicsController < ApplicationController
   uses_tiny_mce :only => [:new, :create, :edit]
 
   def index
-    redirect_to :controller => 'forum'
+    @forum = Forum.find(params[:forum_id])
+    @topics = Topic.find_all_by_forum_id(params[:forum_id])
   end
 
   def create
+    @topic = Topic.new(:title => params[:topic][:title], :forum_id => params[:forum_id], :user_id => User.current.id)
+    if User.current.moderator? then
+      @topic.sticky = params[:topic][:sticky]
+    else
+      @topic.sticky = 0
+    end
+    if @topic.valid? and @topic.save then
+      @post = Post.new(:body => params[:post_body], :topic_id => @topic.id, :user_id => User.current.id)
+      if @post.valid? and @post.save then
+        redirect_to forum_topic_posts_path(:forum_id => params[:forum_id], :topic_id => @topic.id)
+      end
+    end
+    @forum = Forum.find(params[:forum_id])
+    @topics = Topic.find_all_by_forum_id(params[:forum_id])
   end
 
   def new
+    @forum = Forum.find(params[:forum_id])
+    render :action => 'create'
   end
 
   def edit

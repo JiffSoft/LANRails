@@ -1,2 +1,24 @@
-<h1>Topic#create</h1>
-<p>Find me in app/views/topic/create.html.erb</p>
+<h1><%= link_to 'Forums', forums_path %> &raquo; <%= link_to @forum.name, forum_topics_path(:forum_id => @forum.id) %> &raquo; New Thread</h1><br/>
+<% form_for :topic, @topic, :url => {:controller => 'topics', :forum_id => @forum.id, :action => 'create'} do |f| %>
+  <span class="error" style="text-align: center; margin: auto;">
+    <%= error_messages_for 'topic', :header_message => "Please Try Again!", :message => "There were the following errors when trying to create the topic" %>
+  </span>
+  <table width="75%" align="center" border="0">
+    <tr>
+      <td><b>Title:</b></td>
+      <td><%= f.text_field :title, :size => 25 %></td>
+    </tr>
+    <tr>
+      <td valign="top" colspan="2"><b>Message:</b><br/>
+        <%= text_area :post_body, nil, :size => "65x8",:class => "mceEditor" %><br/>
+        <div class="center">
+          <% if User.current.moderator? then %>
+            <%= f.check_box :sticky, :value => 1 %> Make a sticky?
+            <br/><br/>
+          <% end %>
+          <%= submit_tag "Post Topic", :class => 'btn' %>
+        </div>
+      </td>
+    </tr>
+  </table>
+<% end %>

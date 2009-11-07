@@ -1,2 +1,28 @@
-<h1>Topic#index</h1>
-<p>Find me in app/views/topic/index.html.erb</p>
+<h1><%= link_to 'Forums', forums_path %> &raquo; <%= @forum.name %></h1>
+
+<% if @topics.length == 0 then %>
+  <p>There are no topics in this forum.</p>
+<% else %>
+  <table class="thread_table">
+    <tr>
+      <th>Thread</th>
+      <th>Posts</th>
+      <th>Last Post</th>
+    </tr>
+    <% @topics.each do |t| %>
+      <tr>
+        <td><%= link_to t.title, forum_topic_posts_path(:forum_id => @forum.id, :topic_id => t.id) %>
+          <div class="thread_author">By <%= link_to t.user.username, profile_path(t.user) rescue 'Unknown' %></div>
+        </td>
+        <td class="center"><%= t.posts_count %></td>
+        <td class="center"><%= t.updated_at %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
+<% if User.current && User.current.loggedin? then %>
+  <div class="float_right">
+    <%= button_to 'New Thread', new_forum_topic_path(:forum_id => @forum.id), :class => 'float_right btn', :method => :get %>
+  </div>
+  <div class="break"></div>
+<% end %>

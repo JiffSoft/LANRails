@@ -2,7 +2,7 @@ class AccountsController < ApplicationController
   require "base64"
   require "digest/sha1"
   before_filter :require_login, :only => [:edit, :update]
-  uses_tiny_mce :only => [:profile] # for signature
+  uses_tiny_mce :only => [:edit] # for signature
   
   def show
     if (User.current)
@@ -102,6 +102,10 @@ class AccountsController < ApplicationController
 
   def staff
     @staff = User.find_by_sql "SELECT * FROM #{User.table_name} WHERE status >= #{User::STATUS_MODERATOR}"
+    if @staff.length == 0
+      flash.now[:error] = "We have no staff!"
+      redirect_to root_path
+    end
   end
 
   def edit
@@ -109,6 +113,8 @@ class AccountsController < ApplicationController
   end
 
   def update
+    @user = User.current
+    @user.bio = params[:user][:bio]
     if !@user.valid? or !@user.save then
       flash[:error] = "There was an error saving your profile!"
       render :action => 'edit'

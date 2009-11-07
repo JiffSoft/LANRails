@@ -1,6 +1,5 @@
 class Forum < ActiveRecord::Base
-  has_many :topics, :order => "#{Topic.table_name}.sticky DESC, #{Topic.table_name}.updated_at DESC", :dependent => :delete_all
-  has_many :posts, :through => :topics, :dependent => :delete_all
+  has_many :topics, :order => "#{Topic.table_name}.sticky DESC, #{Topic.table_name}.updated_at DESC"
 
   ACCESS_EVERYBODY = 0
   ACCESS_REGISTERED = 1
@@ -21,14 +20,14 @@ class Forum < ActiveRecord::Base
 
   def post_count
     count = 0
-    @threads = Thread.find_all_by_forum_id(id)
+    @threads = Topic.find_all_by_forum_id(id)
     for thread in @threads
-      count += thread.post_count
+      count += thread.posts_count
     end
     count
   end
 
-  def thread_count
-    Thread.count(:id, :conditions => {:forum_id => id})
+  def topic_count
+    Topic.count(:id, :conditions => {:forum_id => id})
   end
 end

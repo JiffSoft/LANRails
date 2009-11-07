@@ -1,13 +1,13 @@
-/* 
+/*
     Document   : default
     Created on : Oct 14, 2009, 1:47:23 PM
     Author     : jonathan.enzinna
     Description:
-        Default LANRails style.
+        Default lan69 style.
 */
 
 body {
-    background: #a3919f url('../../images/lanrails/background.jpg') top left repeat-x;
+    background: #a3919f url('../../images/lan69/background.jpg') top left repeat-x;
     margin: 0;
     padding: 0;
     color: white;
@@ -38,14 +38,14 @@ a {
 
 #site_banner {
     height: 131px;
-    background: transparent url('../../images/lanrails/header.jpg') top center no-repeat;
+    background: transparent url('../../images/lan69/header.jpg') top center no-repeat;
 }
 
 #main_nav {
     height: 35px;
     padding-bottom: 5px;
     padding-top: 10px;
-    background: transparent url('../../images/lanrails/topnav.gif') left no-repeat;
+    background: transparent url('../../images/lan69/topnav.gif') left no-repeat;
     text-align: center;
 }
 
@@ -115,7 +115,7 @@ a {
     padding-top: 14px;
     min-height: 66px;
     margin: auto;
-    background: transparent url('../../images/lanrails/footer.png') top center no-repeat;
+    background: transparent url('../../images/lan69/footer.png') top center no-repeat;
     color: white;
     font-size: 10px;
 }

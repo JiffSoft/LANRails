@@ -1,6 +1,4 @@
-This is left navigation!
 <% if User.current && User.current.moderator? %>
-  <hr/>
   <b>Moderators:</b><br/>
   <ul>
     <li><%= link_to 'New News Article', new_news_path %></li>

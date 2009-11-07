@@ -1,6 +1,9 @@
 class Post < ActiveRecord::Base
-  belongs_to :topic, :counter_cache => true, :dependent => :delete_all
+  belongs_to :topic, :counter_cache => true
   belongs_to :user, :counter_cache => true
+
+  validates_presence_of :user_id
+  validates_presence_of :topic_id
 
   after_create :update_topic_caches
   after_update :update_topic_caches
@@ -14,7 +17,7 @@ class Post < ActiveRecord::Base
 
 protected
   def update_topic_caches
-    Topic.update_cached_fields(self)
+    topic.update_cached_fields(self)
   end
 
   def topic_is_open

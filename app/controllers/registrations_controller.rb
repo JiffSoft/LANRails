@@ -14,7 +14,9 @@ class RegistrationsController < ApplicationController
 
   def new
     @party = Party.find(params[:party_id])
-    @target_party = Party.find(params[:party_id])
+    if not @party
+      redirect_to root_path
+    end
   end
 
   def create
@@ -22,18 +24,19 @@ class RegistrationsController < ApplicationController
     if Registration.find_by_user_id_and_party_id(User.current, params[:party_id]) then
       redirect_to :action => 'index'
     else
-      @target_party = Party.find(params[:party_id])
+      @party = Party.find(params[:party_id])
       @reg = Registration.new(params[:registration])
       @reg.party_id = params[:party_id]
       @reg.user_id = User.current.id
       if @reg.save then
-        Postoffice.deliver_party_registration_email(User.current,@target_party,@reg)
-        if @target_party.price > 0 then
+        Postoffice.deliver_party_registration_email(User.current,@party,@reg)
+        if @party.price > 0 then
           render :action => 'prepay'
         else
           render :action => 'thank_you'
         end
       else
+        flash.now[:error] = @reg.errors.each_full { |i| puts i }
         render :action => 'new'
       end
     end
