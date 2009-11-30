@@ -21,6 +21,9 @@
   </table>
 <% end %>
 <% if User.current && User.current.loggedin? then %>
+  <div class="float_left">
+    <%= link_to image_tag('rss_icon.gif', :border => 0, :alt => "Forum RSS Feed"), forum_topics_path(:format => 'rss') %>
+  </div>
   <div class="float_right">
     <%= button_to 'New Thread', new_forum_topic_path(:forum_id => @forum.id), :class => 'float_right btn', :method => :get %>
   </div>

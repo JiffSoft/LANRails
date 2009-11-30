@@ -10,9 +10,11 @@ xml.rss("version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/") do
       xml.item do
         xml.pubDate news.created_at
         xml.title news.title
-        xml.link url_for(news)
+        xml.link url_for(news, :only_path => false)
         xml.guid url_for(news)
-        xml.description news.body.truncate(1024)
+        xml.description do
+          xml.cdata! truncate(news.body, :length => 1024)
+        end
         xml.author news.user.username
       end
     end

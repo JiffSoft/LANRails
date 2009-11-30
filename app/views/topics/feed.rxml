@@ -1,9 +1,9 @@
 xml.instruct!
 xml.rss("version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/") do
   xml.channel do
-    xml.title "#{Settings[:site_title]} - #{@forum.title}"
+    xml.title "#{Settings[:site_title]} - #{@forum.name}"
     xml.link url_for(forum_topics_path(:forum_id => @forum.id))
-    xml.description "#{Settings[:site_title]} #{@forum.title} Forum RSS feed"
+    xml.description "#{Settings[:site_title]} #{@forum.name} Forum RSS feed"
     xml.language "en-us"
     
     for topic in @topics
@@ -11,10 +11,12 @@ xml.rss("version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/") do
       xml.item do
         xml.pubDate topic.updated_at
         xml.title topic.title
-        xml.link forum_topic_posts_path(:forum_id => @forum.id, :topic_id => topic.id)
+        xml.link forum_topic_posts_path(:forum_id => @forum.id, :topic_id => topic.id, :only_path => false)
         xml.guid forum_topic_posts_path(:forum_id => @forum.id, :topic_id => topic.id)
         xml.author topic.user.username
-        xml.description @last_post.body.truncate(1024)
+        xml.description do
+          xml.cdata! truncate(@last_post.body, :length => 1024)
+        end
       end
     end
   end
