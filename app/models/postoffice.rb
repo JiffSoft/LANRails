@@ -47,4 +47,12 @@ class Postoffice < ActionMailer::Base
     subject "#{party.name} Pre-Pay Confirmation"
     body :user => user, :party => party, :reg => registration
   end
+
+  def new_post_email(uid, topic, post)
+    user = User.find(uid)
+    recipients user.email
+    from Settings[:email_from]
+    subject "#{Settings[:site_title]} - #{topic.title} New Post"
+    body :user => user, :topic => topic, :post => post
+  end
 end

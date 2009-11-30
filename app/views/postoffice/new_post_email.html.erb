@@ -1,0 +1,5 @@
+Hello <%= @user.username %>!  This message is notifying you of a new post to the forum thread <%= @thread.title %>.<br/>
+<%= link_to "View the post!", forum_topic_posts_path(@post)  %>
+The following post was just made:<br/><br/>
+<%= @post.body %>
+<br/><hr/><br/>This email was sent from an unattended mailbox.  Please do not reply.

@@ -1,0 +1,9 @@
+Hello <%= @user.username %>!  This is an automated message assisting you in recovering your account.  Click the link below to begin recovering your lost password:
+
+<%= link_to "Recover Me!", recovery_path(:activation_code => @user.verifycode) %>
+
+Can't click the link above?  Paste the line below into your browser:
+
+<%= recovery_path(:activation_code => @user.verifycode) %>
+
+This message is sent from an unattended mailbox.  Please do not reply.
