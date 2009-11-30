@@ -1,0 +1,48 @@
+
+
+Processing NewsController#index (for 127.0.0.1 at 2009-11-30 12:08:42) [GET]
+  Parameters: {"action"=>"index", "controller"=>"news"}
+Rendering template within layouts/application
+Rendering news/index
+Completed in 78ms (View: 31, DB: 16) | 200 OK [http://localhost/]
+
+
+Processing ForumsController#index (for 127.0.0.1 at 2009-11-30 12:08:45) [GET]
+  Parameters: {"action"=>"index", "controller"=>"forums"}
+Rendering template within layouts/application
+Rendering forums/index
+Completed in 32ms (View: 32, DB: 0) | 200 OK [http://localhost/forums]
+
+
+Processing TopicsController#index (for 127.0.0.1 at 2009-11-30 12:08:47) [GET]
+  Parameters: {"action"=>"index", "controller"=>"topics", "forum_id"=>"1"}
+Rendering template within layouts/application
+Rendering topics/index
+Completed in 250ms (View: 156, DB: 0) | 200 OK [http://localhost/forums/1/topics]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-11-30 12:08:51) [GET]
+  Parameters: {"topic_id"=>"1", "action"=>"index", "controller"=>"posts", "forum_id"=>"1"}
+Rendering template within layouts/application
+Rendering posts/index
+Completed in 31ms (View: 16, DB: 0) | 200 OK [http://localhost/forums/1/topics/1/posts]
+
+
+Processing PostsController#new (for 127.0.0.1 at 2009-11-30 12:08:53) [GET]
+  Parameters: {"topic_id"=>"1", "action"=>"new", "controller"=>"posts", "forum_id"=>"1"}
+Rendering template within layouts/application
+Rendering posts/create
+Completed in 46ms (View: 31, DB: 15) | 200 OK [http://localhost/forums/1/topics/1/posts/new]
+
+
+Processing PostsController#create (for 127.0.0.1 at 2009-11-30 12:08:56) [POST]
+  Parameters: {"topic_id"=>"1", "commit"=>"Post Reply", "action"=>"create", "authenticity_token"=>"xA1f+N8NSx8rCl0fmdXWvM4E4U40jMD9vPthHdBoyGc=", "post_body"=>["<p>qwerty</p>"], "controller"=>"posts", "forum_id"=>"1"}
+Redirected to http://localhost:3000/forums/1/topics/1/posts
+Completed in 31ms (DB: 16) | 302 Found [http://localhost/forums/1/topics/1/posts]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-11-30 12:08:56) [GET]
+  Parameters: {"topic_id"=>"1", "action"=>"index", "controller"=>"posts", "forum_id"=>"1"}
+Rendering template within layouts/application
+Rendering posts/index
+Completed in 16ms (View: 16, DB: 0) | 200 OK [http://localhost/forums/1/topics/1/posts]

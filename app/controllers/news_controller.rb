@@ -6,6 +6,10 @@ class NewsController < ApplicationController
   def index
     @news = News.find(:all, :limit => Settings[:frontpage_news_limit],
       :order => 'created_at DESC');
+    if request.format.rss? then
+      response.headers['Content-Type'] = 'application/rss+xml'
+      render :action => 'feed', :layout => false
+    end
   end
 
   def show
@@ -44,5 +48,8 @@ class NewsController < ApplicationController
       # it's good!
       redirect_to news_index_path
     end
+  end
+
+  def feed
   end
 end

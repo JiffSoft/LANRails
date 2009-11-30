@@ -1,0 +1,20 @@
+xml.instruct!
+xml.rss("version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/") do
+  xml.channel do
+    xml.title Settings[:site_title]
+    xml.link url_for(root_path)
+    xml.description "#{Settings[:site_title]} news RSS feed"
+    xml.language "en-us"
+    
+    for news in @news
+      xml.item do
+        xml.pubDate news.created_at
+        xml.title news.title
+        xml.link url_for(news)
+        xml.guid url_for(news)
+        xml.description news.body.truncate(1024)
+        xml.author news.user.username
+      end
+    end
+  end
+end

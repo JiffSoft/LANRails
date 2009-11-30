@@ -6,6 +6,11 @@ class TopicsController < ApplicationController
 
   def index
     @forum = Forum.find(params[:forum_id])
+    if request.format.rss? then
+      @topics = Topic.find_all_by_forum_id(params[:forum_id], :limit => 50, :order => "updated_at DESC")
+      response.headers['Content-Type'] = 'application/rss+xml'
+      render :action => 'feed', :layout => false
+    end
     @topics = Topic.find_all_by_forum_id(params[:forum_id])
   end
 
@@ -41,6 +46,9 @@ class TopicsController < ApplicationController
   end
 
   def destroy
+  end
+
+  def feed
   end
 
 private
