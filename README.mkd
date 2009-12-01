@@ -64,8 +64,6 @@ The LANRails website is at [http://lanrails.jonnyfunfun.com/](http://lanrails.jo
 An online demo is available and is constantly updated with the latest development code, approximately once every other day.  It can be accessed here:
 [http://demo.lanrails.jonnyfunfun.com/](http://demo.lanrails.jonnyfunfun.com/)
 
-Bugtracking via [Lighthouse](http://jonnyfunfun.lighthouseapp.com/projects/39522-lanrails/overview)
-
 
 ## Themes ##
 
