@@ -9,7 +9,7 @@
     </td>
     <td valign="top">
       <span class="posted_time">Posted at <%= p.created_at %></span><br/><hr/>
-      <%= p.body.gsub(/^--- \n-/,'') %>
+      <%= p.body.gsub(/^--- \n-( \|-)?/,'') %>
     </td>
   </tr>
 </table><br/>
