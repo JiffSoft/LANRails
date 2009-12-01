@@ -1,8 +1,8 @@
 class TopicsController < ApplicationController
   before_filter :check_forums_enabled
-  before_filter :require_moderator, :only => [:destroy, :edit, :update]
+  #before_filter :require_moderator, :only => [:destroy, :edit, :update]
   before_filter :require_login, :only => [:new, :create]
-  uses_tiny_mce :only => [:new, :create, :edit]
+  uses_tiny_mce :only => [:new, :create]
 
   def index
     @forum = Forum.find(params[:forum_id])
@@ -34,18 +34,6 @@ class TopicsController < ApplicationController
   def new
     @forum = Forum.find(params[:forum_id])
     render :action => 'create'
-  end
-
-  def edit
-  end
-
-  def show
-  end
-
-  def update
-  end
-
-  def destroy
   end
 
   def feed

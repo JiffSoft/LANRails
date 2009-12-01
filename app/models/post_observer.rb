@@ -4,7 +4,9 @@ class PostObserver < ActiveRecord::Observer
     topic = Topic.find(post.topic_id)
     posts = Post.find_all_by_topic_id(post.topic_id)
     posts.each do |p|
-      @users.push(p.user_id)
+      if p.user_id != User.current.id then
+        @users.push(p.user_id)
+      end
     end
     @users.uniq.each do |u|
       Postoffice.deliver_new_post_email(u, topic, post)

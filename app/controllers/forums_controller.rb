@@ -1,6 +1,6 @@
 class ForumsController < ApplicationController
   before_filter :check_forums_enabled
-  before_filter :require_administrator, :only => [:create, :edit, :update, :destroy]
+  before_filter :require_administrator, :only => [:create, :new]
   uses_tiny_mce :only => [:new, :create, :edit]
 
   def index
@@ -20,15 +20,6 @@ class ForumsController < ApplicationController
     if @forum.valid? and @forum.save then
       redirect_to forums_path
     end
-  end
-
-  def edit
-  end
-
-  def update
-  end
-
-  def destroy
   end
 
 private

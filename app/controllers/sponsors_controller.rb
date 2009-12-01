@@ -1,5 +1,5 @@
 class SponsorsController < ApplicationController
-  before_filter :require_moderator, :only => [:create, :new, :edit, :update]
+  before_filter :require_moderator, :only => [:create, :new]
   before_filter :require_administrator, :only => [:destroy]
 
   def index
@@ -19,16 +19,8 @@ class SponsorsController < ApplicationController
     render :action => 'create'
   end
 
-  def edit
-  end
-
-  def show
-  end
-
-  def update
-  end
-
   def destroy
+    Sponsor.destroy(params[:id])
   end
 
 end

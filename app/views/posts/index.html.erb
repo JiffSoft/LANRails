@@ -9,11 +9,15 @@
     </td>
     <td valign="top">
       <span class="posted_time">Posted at <%= p.created_at %></span><br/><hr/>
-      <%= p.body %>
+      <%= p.body.gsub(/^--- \n-/,'') %>
     </td>
   </tr>
 </table><br/>
 <% end %>
-<% if User.current && User.current.loggedin? && @topic.locked == false then %>
-  <%= button_to 'Post Reply', new_forum_topic_post_path, :class => 'float_right btn', :method => :get %>
+<% if User.current && User.current.loggedin? then %>
+  <% if @topic.locked == false then %>
+    <%= button_to 'Post Reply', new_forum_topic_post_path, :class => 'float_right btn', :method => :get %>
+  <% else %>
+    <%= button_to 'Topic Locked', root_path, :class => 'float_right btn', :disabled => true %>
+  <% end %>
 <% end %>

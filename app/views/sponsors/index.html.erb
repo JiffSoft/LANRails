@@ -1,6 +1,12 @@
 <h1>Our Sponsors</h1>
 <% @sponsors.each do |s| %>
-  <% link_to s.url do %>
-    <%= s.public_image_tag %>
-  <% end %>
+  <div class="float_left" style="text-align: center;">
+    <% link_to s.url do %>
+      <%= s.public_image_tag %>
+    <% end %>
+    <% if User.current && User.current.administrator? then %>
+      <br/><%= link_to '[Delete]', sponsor_path(s), :confirm => 'Are you sure you want to remove this sponsor?', :method => :delete %>
+    <% end %>
+  </div>
 <% end %>
+<div class="break"></div>
