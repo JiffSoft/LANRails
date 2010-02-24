@@ -81,6 +81,10 @@ class AccountsController < ApplicationController
     redirect_to root
   end
 
+  def forgot_password
+    
+  end
+
   def recover
     if request.post?
       # populate verifycode, send the recovery email
@@ -93,6 +97,9 @@ class AccountsController < ApplicationController
       Postoffice.deliver_recovery_email(@user)
     else
       @user = User.find_by_verifycode(params[:activation_code])
+      if not @user
+        redirect_to root
+      end
       # generate a random password
       @newpass = rand(99999999999999).to_s.center(12, rand(9).to_s)
       @user.password = @newpass
@@ -115,6 +122,10 @@ class AccountsController < ApplicationController
   def update
     @user = User.current
     @user.bio = params[:user][:bio]
+    if (params[:user][:password].to_s.length != 0)
+      @user.password = params[:user][:password]
+      @user.password_confirmation = params[:user][:password_confirmation]
+    end
     if !@user.valid? or !@user.save then
       flash[:error] = "There was an error saving your profile!"
       render :action => 'edit'

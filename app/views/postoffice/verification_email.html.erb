@@ -1,9 +1,9 @@
 Hello <%= @user.username %>!  Welcome to <%= Settings[:site_title] %>!  Unfortunately your account must be activated before it can be used.  Click on the link below to activate your account:
 <br/>
-<%= link_to "Activate Me!", activation_path(:activation_code => @user.verifycode) %><br/>
+<%= link_to "Activate Me!", url_for(:controller => 'accounts', :action => 'activate', :activation_code => @user.verifycode, :only_path => false) %><br/>
 <br/>
 Can't click the link above?  Paste the line below into your browser:<br/>
 <br/>
-<%= activation_path(:activation_code => @user.verifycode) %>
+<%= url_for(:controller => 'accounts', :action => 'activate', :activation_code => @user.verifycode, :only_path => false) %>
 <br/>
 This message is sent from an unattended mailbox.  Please do not reply.

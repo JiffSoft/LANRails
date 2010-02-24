@@ -1,5 +1,5 @@
 Hello <%= @user.username %>!  Welcome to <%= Settings[:site_title] %>!  Your account is now active and ready to be used to register for parties!
-
-<%= link_to root_path %>
-
+<br/>
+<%= link_to url_for(:controller => 'accounts', :action => 'login', :only_path => false).to_s, url_for(:controller => 'accounts', :action => 'login', :only_path => false) %>
+<br/>
 This message is sent from an unattended mailbox.  Please do not reply.

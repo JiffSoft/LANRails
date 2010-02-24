@@ -15,6 +15,20 @@
         <%= f.text_area :bio, :size => "65x10",:class => "mceEditor" %>
       </td>
     </tr>
+    <tr>
+      <td colspan="2">
+        <hr/>
+        Change your password? Do so here! If you do not wish to change your password, leave this blank!<br/>
+      </td>
+    </tr>
+    <tr>
+      <td><b>New Password:</b></td>
+      <td><%= f.password_field :password, :value => '' %></td>
+    </tr>
+    <tr>
+      <td><b>Confirm:</b></td>
+      <td><%= f.password_field :password_confirmation %></td>
+    </tr>
   </table>
   <br/><div class="center"><%= f.submit 'Save Changes' %></div>
 <% end %>

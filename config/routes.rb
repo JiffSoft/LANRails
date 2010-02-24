@@ -33,6 +33,7 @@ ActionController::Routing::Routes.draw do |map|
   map.activation 'activate/:activation_code', :controller => 'accounts', :action => 'activate'
   map.recovery 'recovery/:activation_code', :controller => 'accounts', :action => 'recover', :conditions => {:method => :get}
   map.recover 'recover', :controller => 'accounts', :action => 'recover', :conditions => {:method => :post}
+  map.forgot_password 'forgot_password', :controller => 'accounts', :action => 'forgot_password', :conditions => {:method => :get}
   map.staff 'staff', :controller => 'accounts', :action => 'staff', :conditions => {:method => :get}
 
   # PayPal IPN
