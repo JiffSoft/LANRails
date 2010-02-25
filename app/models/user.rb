@@ -83,6 +83,10 @@ class User < ActiveRecord::Base
   def registered?(party)
     Registration.find_by_party_id_and_user_id(party,self.id) != nil rescue false
   end
+
+  def get_registration(party)
+    return Registration.find_by_party_id_and_user_id(party,self.id) rescue nil
+  end
   
   def complete_verification(code)
     if code == self.verifycode

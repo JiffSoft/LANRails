@@ -4,19 +4,26 @@
     <tr>
       <td><b>Username:</b></td>
       <td><%= @user.username %></td>
+      <td rowspan="3" style="text-align: right;">
+        <img src="<%= gravatar_url(@user.email) %>" style="padding-right: 10px;"/>
+      </td>
     </tr>
     <tr>
       <td><b>Email:</b></td>
       <td><%= @user.email %></td>
     </tr>
     <tr>
-      <td colspan="2">
+      <td><b>Avatar:</b></td>
+      <td>Visit <a href="http://www.gravatar.com/" target="_blank">Gravatar</a> to get one!</td>
+    </tr>
+    <tr>
+      <td colspan="3">
         <b>Bio:</b><br/>
         <%= f.text_area :bio, :size => "65x10",:class => "mceEditor" %>
       </td>
     </tr>
     <tr>
-      <td colspan="2">
+      <td colspan="3">
         <hr/>
         Change your password? Do so here! If you do not wish to change your password, leave this blank!<br/>
       </td>
@@ -24,10 +31,12 @@
     <tr>
       <td><b>New Password:</b></td>
       <td><%= f.password_field :password, :value => '' %></td>
+      <td></td>
     </tr>
     <tr>
       <td><b>Confirm:</b></td>
       <td><%= f.password_field :password_confirmation %></td>
+      <td></td>
     </tr>
   </table>
   <br/><div class="center"><%= f.submit 'Save Changes' %></div>

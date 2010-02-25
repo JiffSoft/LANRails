@@ -10,6 +10,9 @@
   <b>Admin Panel:</b><br/>
   <ul>
     <li><%= link_to 'New Party', new_party_path %></li>
+    <% if Party.current_party && Settings[:enable_tournaments].match(/(true|t|yes|y|1)$/i) != nil then %>
+      <li><%= link_to 'New Tournament', new_party_tournament_path(Party.current_party) %></li>
+    <% end %>
     <% if Settings[:enable_forums].match(/(true|t|yes|y|1)$/i) != nil %>
       <li><%= link_to 'New Forum', new_forum_path %></li>
     <% end %>

@@ -17,6 +17,23 @@ class RegistrationsController < ApplicationController
     if not @party
       redirect_to root_path
     end
+    if Settings[:registrations_require_confirmation].match(/(true|t|yes|y|1)$/i) == nil then
+      @party = Party.find(params[:party_id])
+      @reg = Registration.new()
+      @reg.party_id = params[:party_id]
+      @reg.user_id = User.current.id
+      if @reg.save then
+        Postoffice.deliver_party_registration_email(User.current,@party,@reg)
+        if @party.price > 0 then
+          render :action => 'prepay'
+        else
+          render :action => 'thank_you'
+        end
+      else
+        flash.now[:error] = @reg.errors.each_full { |i| puts i }
+        render :action => 'new'
+      end
+    end
   end
 
   def create

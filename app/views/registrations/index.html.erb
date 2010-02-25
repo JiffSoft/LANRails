@@ -1,4 +1,14 @@
 <h1><%= @party.name %></h1>
+<%= @party.description %>
+<br/>
+<h3>Where's the party at?</h3>
+<%= @party.location %><br/>
+<%= @party.address %><br/>
+<%= @party.city %>, <%= @party.stateprov %> <%= @party.zip %><br/>
+<% if Settings[:party_google_map_directions].match(/(true|t|yes|y|1)$/i) != nil then %>
+  <%= link_to "[Map &amp; Directions]", "http://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=#{CGI::escape(@party.address)},+#{CGI::escape(@party.city)},+#{CGI::escape(@party.stateprov)},+#{CGI::escape(@party.zip)}" %>
+<% end %>
+<br/><br/>
 <h3>Who's Coming?</h3>
 <div class="center"><p>There are currently <%= @party.registered_count %> people signed up to attend out of a maximum of <%= @party.maximum_registrations %></p></div>
 
@@ -16,9 +26,18 @@
 </table>
 
 <% if User.current && !User.current.registered?(@party.id) then %>
-  <div class="center"><%= link_to 'Register Now!', new_party_registration_path %></div>
+  <div class="center"><%= link_to 'Register Now!', new_party_registration_path %></div><br/>
 <% elsif User.current then %>
-  <div class="center">You have already registered to attend!</div>
+  <div class="center">You have already registered to attend!
+  <% if @party.price > 0 && User.current.get_registration(@party.id) && (User.current.get_registration(@party.id).paid? == false) then %>
+    <br/><br/><b>You still need to pre-pay to secure your seat.</b><br />
+    The registration fee for this party is $<%= @party.price %>. You can pre-pay your registration fee via PayPal.<br/>
+    <form action="https://www.paypal.com/us/cgi-bin/webscr" method="POST">
+      <%= paypal_setup User.current.get_registration(@party.id).id, @party.price, Settings[:paypal_address], :item_name => "#{@party.name} Registration for #{User.current.username}", :notify_url => url_for(ipn_path) %>
+      <%= submit_tag 'Pay Now', :class => 'btn' %>
+    </form>
+   <% end %>
+   </div>
 <% else %>
   <div class="center">Please <%= link_to 'create an account', new_account_path %> or <%= link_to 'login', login_path %> to register.</div>
 <% end %>

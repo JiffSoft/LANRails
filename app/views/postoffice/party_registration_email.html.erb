@@ -3,7 +3,7 @@ Hello <%= @user.username %>!  This message is to confirm your registration for <
   You still need to pre-pay to secure your seat.<br />
   The registration fee for this party is $<%= @party.price %>. You can pre-pay your registration fee via PayPal.<br/>
   <form action="https://www.paypal.com/us/cgi-bin/webscr" method="POST">
-    <%= paypal_setup @registration.id, @party.price, Settings[:paypal_address], :item_name => "#{@party.name} Registration for #{@user.username}", :notify_url => url_for(ipn_path) %>
+    <%= paypal_setup @reg.id, @party.price, Settings[:paypal_address], :item_name => "#{@party.name} Registration for #{@user.username}", :notify_url => url_for(ipn_path) %>
     <%= submit_tag 'Pay Now' %>
   </form>
 <% end %>

@@ -1,2 +1,46 @@
-<h1>Tournaments#index</h1>
-<p>Find me in app/views/tournaments/index.html.erb</p>
+<h1><%= @party.name %> Tournaments</h1>
+<% if @tournaments.count == 0 then %>
+  <p>There are no tournaments announced yet for this party.</p>
+<% else %>
+  <table width="75%" align="center" cellspacing="0" cellpadding="2" border="1">
+    <tr>
+      <th>Tournament Name</th>
+      <th>Teams</th>
+      <th>Maximum</th>
+      <th></th>
+    </tr>
+  <% @tournaments.each do |t| %>
+    <tr>
+      <td><%= link_to t.name, show_party_tournament_path(t) %></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  <% end %>
+  </table>
+<% end %>
+<br/><h3>Currently Registered Teams</h3>
+<% if @teams.count == 0 then %>
+  <p>There are no teams registered yet! Be the first! <%= link_to 'Make one!', new_party_team_path(params[:party_id]) %></p>
+<% else %>
+  <table width="75%" align="center" cellspacing="0" cellpadding="2" border="1">
+    <tr>
+      <th>Team Name</th>
+      <th>Members</th>
+      <th>Leader</th>
+      <th></th>
+    </tr>
+    <% @teams.each do |t| %>
+    <tr>
+      <td><%= link_to t.name, party_team_path(t) %></td>
+      <td></td>
+      <td></td>
+      <td>
+        <% if t.moderated then %>
+        <% else %>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+<% end %>

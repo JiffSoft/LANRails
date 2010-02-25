@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091106202911) do
+ActiveRecord::Schema.define(:version => 20100225182143) do
 
   create_table "forums", :force => true do |t|
     t.string   "name"
@@ -94,6 +94,22 @@ ActiveRecord::Schema.define(:version => 20091106202911) do
     t.datetime "updated_at"
   end
 
+  create_table "team_memberships", :force => true do |t|
+    t.integer  "team_id"
+    t.integer  "user_id"
+    t.boolean  "leader",     :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "teams", :force => true do |t|
+    t.string   "name"
+    t.integer  "party_id"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "topics", :force => true do |t|
     t.integer  "user_id"
     t.integer  "forum_id"
@@ -105,6 +121,13 @@ ActiveRecord::Schema.define(:version => 20091106202911) do
     t.integer  "sticky",      :default => 0
   end
 
+  create_table "tournament_registrations", :force => true do |t|
+    t.integer  "team_id"
+    t.integer  "tournament_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "tournaments", :force => true do |t|
     t.integer  "game_id"
     t.integer  "party_id"
@@ -112,6 +135,7 @@ ActiveRecord::Schema.define(:version => 20091106202911) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "max_teams"
   end
 
   create_table "users", :force => true do |t|

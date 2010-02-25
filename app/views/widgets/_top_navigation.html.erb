@@ -2,6 +2,9 @@
 	<li><%= link_to 'Home', root_path %></li>
 	<% if Party.current_party then %>
 		<li><%= link_to 'Register', party_registrations_path(:party_id => Party.current_party.id) %></li>
+                <% if Settings[:enable_tournaments].match(/(true|t|yes|y|1)$/i) != nil then %>
+                <li><%= link_to 'Tournaments', party_tournaments_path(:party_id => Party.current_party.id) %></li>
+                <% end %>
 	<% end %>
     <% if Settings[:enable_forums].match(/(true|t|yes|y|1)$/i) != nil then %>
       <li><%= link_to 'Forums', forums_path %></li>

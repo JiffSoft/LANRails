@@ -10,6 +10,7 @@ protected
     p = Party.find(party_id)
     errors.add_to_base("This party has happened already!") if p.past?
     errors.add_to_base("This party is currently happening!") if p.running?
+    errors.add_to_base("You have already registered for this party!") if User.current && User.current.registered?(party_id)
   end
 end
 

@@ -4,7 +4,7 @@ class PartyController < ApplicationController
 
   def index
     if Party.current_party then
-      redirect_to show_party_path, :party_id => Party.current_party.id
+      redirect_to party_registrations_path(:party_id => Party.current_party.id)
     else
       redirect_to root_path
     end
