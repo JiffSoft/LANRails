@@ -1,2 +1,29 @@
-<h1>Tournaments#create</h1>
-<p>Find me in app/views/tournaments/create.html.erb</p>
+<h1>New Tournament</h1>
+<% form_for :tournament, @tournament, :url => {:controller => 'tournaments', :action => 'create'} do |f| %>
+  <span class="error" style="text-align: center; margin: auto;">
+    <%= error_messages_for 'tournament', :header_message => "Please Try Again!", :message => "There were the following errors when trying to create the new tournament" %>
+  </span>
+  <table width="85%" align="center" border="0">
+    <tr>
+      <td><b>Name:</b></td>
+      <td><%= f.text_field :name, :size => 50 %></td>
+    </tr>
+    <tr>
+      <td valign="top"><b>Description:</b></td>
+      <td><%= f.text_area :description, :size => "5x15", :class => "mceEditor" %></td>
+    </tr>
+    <% if @games then %>
+    <tr>
+      <td><b>Game:</b></td>
+      <td><%= f.select :game_id, @games %></td>
+    </tr>
+    <% end %>
+    <tr>
+      <td><b>Max Teams:</b></td>
+      <td><%= f.text_field :max_teams, :size => 8 %></td>
+    </tr>
+  </table>
+<div class="center">
+  <%= f.submit 'Add Tournament' %>
+</div>
+<% end %>

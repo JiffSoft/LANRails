@@ -25,8 +25,6 @@ ActiveRecord::Schema.define(:version => 20100225182143) do
     t.string   "name"
     t.text     "description"
     t.string   "url"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "news", :force => true do |t|
@@ -98,6 +96,7 @@ ActiveRecord::Schema.define(:version => 20100225182143) do
     t.integer  "team_id"
     t.integer  "user_id"
     t.boolean  "leader",     :default => false
+    t.boolean  "active",     :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -106,6 +105,7 @@ ActiveRecord::Schema.define(:version => 20100225182143) do
     t.string   "name"
     t.integer  "party_id"
     t.text     "description"
+    t.boolean  "moderated",   :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
   end

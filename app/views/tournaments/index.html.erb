@@ -1,4 +1,4 @@
-<h1><%= @party.name %> Tournaments</h1>
+<h1>Tournaments</h1>
 <% if @tournaments.count == 0 then %>
   <p>There are no tournaments announced yet for this party.</p>
 <% else %>
@@ -11,17 +11,21 @@
     </tr>
   <% @tournaments.each do |t| %>
     <tr>
-      <td><%= link_to t.name, show_party_tournament_path(t) %></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td><%= link_to t.name, party_tournament_path(:party_id => t.party_id, :id => t.id) %></td>
+      <td><%= t.current_registrations %></td>
+      <td><%= t.max_teams %></td>
+      <td>
+        <% if User.current && User.current.has_team_leader?(t.party_id) then %>
+          <%= link_to "[Register]", new_party_tournament_tournament_registration_path(:party_id => t.party_id, :tournament_id => t.id) %>
+        <% end %>
+      </td>
     </tr>
   <% end %>
   </table>
 <% end %>
 <br/><h3>Currently Registered Teams</h3>
 <% if @teams.count == 0 then %>
-  <p>There are no teams registered yet! Be the first! <%= link_to 'Make one!', new_party_team_path(params[:party_id]) %></p>
+  <p>There are no teams registered yet! Be the first! <%= link_to 'Make one!', new_party_team_path %></p>
 <% else %>
   <table width="75%" align="center" cellspacing="0" cellpadding="2" border="1">
     <tr>
@@ -33,11 +37,13 @@
     <% @teams.each do |t| %>
     <tr>
       <td><%= link_to t.name, party_team_path(t) %></td>
-      <td></td>
-      <td></td>
+      <td><%= t.member_count %></td>
+      <td><%= link_to t.leader.username, profile_path(t.leader) %></td>
       <td>
-        <% if t.moderated then %>
+        <% if not t.moderated then %>
+          <%= link_to 'Join', new_party_team_team_membership_path(t) %>
         <% else %>
+          Closed
         <% end %>
       </td>
     </tr>

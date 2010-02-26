@@ -87,6 +87,22 @@ class User < ActiveRecord::Base
   def get_registration(party)
     return Registration.find_by_party_id_and_user_id(party,self.id) rescue nil
   end
+
+  def has_team?(party)
+    @memberships = TeamMembership.find_all_by_user_id(self.id)
+    @memberships.each do |m|
+      true if Team.find(@memberships.team_id) && Team.find(@memberships.team_id).party_id = party
+    end
+    false
+  end
+
+  def has_team_leader?(party)
+    @memberships = TeamMembership.find_all_by_user_id_and_leader(self.id,true)
+    @memberships.each do |m|
+      true if Team.find(@memberships.team_id) && Team.find(@memberships.team_id).party_id = party
+    end
+    false
+  end
   
   def complete_verification(code)
     if code == self.verifycode

@@ -4,8 +4,6 @@ class CreateGames < ActiveRecord::Migration
       t.string :name
       t.text :description
       t.string :url
-      
-      t.timestamps
     end
   end
 

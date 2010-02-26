@@ -1,5 +1,7 @@
 class TournamentsController < ApplicationController
   before_filter :check_tournaments_enabled
+  before_filter :require_administrator, :only => [:new, :create, :edit, :update, :destroy]
+  uses_tiny_mce :options => {:theme => 'advanced'}, :only => [:create, :new]
 
   def index
     @party = Party.find(params[:party_id])
@@ -9,9 +11,17 @@ class TournamentsController < ApplicationController
   end
 
   def create
+    @tournament = Tournament.new(params[:tournament])
+    @tournament.party_id = params[:party_id]
+    if @tournament.save then
+      redirect_to party_tournaments_path
+    end
+    @games = Game.find(:all)
   end
 
   def new
+    render :action => 'create'
+    @games = Game.find(:all)
   end
 
   def edit
