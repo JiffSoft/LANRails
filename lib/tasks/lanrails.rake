@@ -17,14 +17,20 @@ namespace :lanrails do
 
   desc "Adds games to the games table"
   task :insert_game_info => :environment do
-    @csv_info = CSV::Reader.parse(File.open("#{RAILS_ROOT}/config/game_information.csv"))
-    puts "Inserting game information..."
-    @csv_info.each do |gi|
-      g = Game.new
-      g.name = gi[1]
-      g.description = gi[2]
-      g.url = gi[3]
+    @lines = File.open("#{RAILS_ROOT}/config/gameinfo.csv").readlines
+    puts "Inserting game information for #{@lines.count} games..."
+    n = 0
+    @lines.each do |l|
+      gi = l.split(',')
+      game = Game.new do |g|
+        g.name = gi[0]
+        g.short_name = gi[1]
+        g.game_type = gi[2]
+      end
+      if game.save!
+        n += 1
+      end
     end
-    puts "#{@csv_info.count} inserts completed"
+    puts "DONE IMPORTING #{n} GAMES!"
   end
 end
