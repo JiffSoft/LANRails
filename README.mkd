@@ -16,7 +16,6 @@ LANRails will include all standard features one out expect out of such a solutio
 
     -   Registration
     -   Team Management
-    -   Ladder Management
     -   Prize Management
 
 +   ...and more!
@@ -46,15 +45,16 @@ LANRails will include all standard features one out expect out of such a solutio
 
 4. Run `rake db:migrate`
 5. CHMOD the `public/uploads` directory to allow for read/write access
-6. Start up the server as you usually would (mongrel, script/server, etc.)
-7. Register a new account
-8. From the command line run `rake lanrails:make_admin user_name='<YOUR USER NAME>'` to make your account an admin
-9. Log-in and have fun!
+6. If you want to use the tournaments module, you will want to have some game data inserted.  Use the rake task `rake lanrails:insert_game_info` to do this for you.  If you want to add more games, insert them directly into the `games` table.  There is no interface for adding or removing games.
+7. Start up the server as you usually would (mongrel, script/server, etc.)
+8. Register a new account
+9. From the command line run `rake lanrails:make_admin user_name='<YOUR USER NAME>'` to make your account an admin
+10. Log-in and have fun!
 
 
 ## License ##
 
-LANRails is released under the MIT License and is copyright &copy; 2009 Jonathan Enzinna.  A copy of the license is available in the LICENSE file.
+LANRails is released under the MIT License and is copyright &copy; 2010 Jonathan Enzinna.  A copy of the license is available in the LICENSE file.
 
 
 ## Support ##
