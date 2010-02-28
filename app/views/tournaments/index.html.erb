@@ -6,17 +6,14 @@
     <tr>
       <th>Tournament Name</th>
       <th>Teams</th>
-      <th>Maximum</th>
-      <th></th>
     </tr>
   <% @tournaments.each do |t| %>
     <tr>
-      <td><%= link_to t.name, party_tournament_path(:party_id => t.party_id, :id => t.id) %></td>
-      <td><%= t.current_registrations %></td>
-      <td><%= t.max_teams %></td>
-      <td>
-        <% if User.current && User.current.has_team_leader?(t.party_id) then %>
-          <%= link_to "[Register]", new_party_tournament_tournament_registration_path(:party_id => t.party_id, :tournament_id => t.id) %>
+      <td><%= link_to t.name, party_tournament_path(:party_id => t.party_id, :id => t.id) %><br/>
+        <span class="tournament_gamename"><%= t.game.name %></span></td>
+      <td style="text-align: center;"><%= t.current_registrations %> of <%= t.max_teams %>
+        <% if User.current && User.current.has_team_leader?(t.party_id) && User.current.own_team(t.party_id).is_registered?(t.id) == false then %>
+          <br/><%= link_to '[Register]', new_party_tournament_tournament_registration_path(:tournament_id => t.id) %>
         <% end %>
       </td>
     </tr>
@@ -32,20 +29,12 @@
       <th>Team Name</th>
       <th>Members</th>
       <th>Leader</th>
-      <th></th>
     </tr>
     <% @teams.each do |t| %>
     <tr>
-      <td><%= link_to t.name, party_team_path(t) %></td>
-      <td><%= t.member_count %></td>
-      <td><%= link_to t.leader.username, profile_path(t.leader) %></td>
-      <td>
-        <% if not t.moderated then %>
-          <%= link_to 'Join', new_party_team_team_membership_path(t) %>
-        <% else %>
-          Closed
-        <% end %>
-      </td>
+      <td><%= link_to t.name, party_team_path(:id => t.id, :party_id => params[:party_id]) %></td>
+      <td style="text-align: center;"><%= t.member_count %></td>
+      <td style="text-align: center;"><%= link_to t.leader.username, profile_path(t.leader) %></td>
     </tr>
     <% end %>
   </table>

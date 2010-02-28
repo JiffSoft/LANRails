@@ -31,6 +31,29 @@ a {
     text-decoration: underline;
 }
 
+table {
+	border-width: 1px;
+	border-spacing: ;
+	border-style: inset;
+	border-color: gray;
+	border-collapse: collapse;
+}
+table th {
+	border-width: 1px;
+	padding: 1px;
+	border-style: inset;
+	border-color: gray;
+	-moz-border-radius: ;
+}
+table td {
+	border-width: 1px;
+	padding: 1px;
+	border-style: inset;
+	border-color: gray;
+        padding: 2px;
+	-moz-border-radius: ;
+}
+
 #header {
     width: 756px;
     margin: auto;
@@ -161,6 +184,7 @@ p.sections
 	border:1px solid #bd7;
 	margin-top:0;
 	font-size:0.8em;
+        color: black;
 }
 
 p.error
@@ -265,4 +289,29 @@ p.error
     border-style:dotted;
     border-color: #373037;
     color: #CCCCCC;
+}
+
+
+.tournament_team_box {
+    text-align: center;
+    width: 180px;
+    padding-top: 24px;
+}
+
+.team_members_box {
+    width: 180px;
+text-align: center;
+}
+
+.tournament_gamename {
+    color: gray;
+    font-style: italic;
+    font-size: 10px;
+}
+
+.control_panel {
+    margin: 20px 5px 0 5px;
+    padding: 5px;
+    border: thin black;
+    background-color: #063669;
 }

@@ -1,2 +1,27 @@
-<h1>Teams#create</h1>
-<p>Find me in app/views/teams/create.html.erb</p>
+<h1>Make a new Team</h1>
+<% form_for :team, @team, :url => {:controller => 'teams', :action => 'create', :party_id => params[:party_id]} do |f| %>
+  <span class="error" style="text-align: center; margin: auto;">
+    <%= error_messages_for 'team', :header_message => "Please Try Again!", :message => "There were the following errors when trying to create the new team" %>
+  </span>
+  <table width="85%" align="center" border="0">
+    <tr>
+      <td><b>Name:</b></td>
+      <td><%= f.text_field :name, :size => 50 %></td>
+    </tr>
+    <tr>
+      <td valign="top"><b>Description:</b></td>
+      <td><%= f.text_area :description, :size => "5x15", :class => "mceEditor" %></td>
+    </tr>
+    <tr>
+      <td valign="top"><b>Membership Moderated?</b></td>
+      <td><%= f.check_box :moderated, :checked => false %><br/>
+        Moderated membership means that all requests to join the team must be approved before a user can be a part of the team.  An unmoderated (open) team is a
+        team which anybody can join and their membership does not need to be pre-approved.
+      </td>
+    </tr>
+  </table>
+<div class="center">
+  <%= f.submit 'Make my Team' %>
+</div>
+<% end %>
+

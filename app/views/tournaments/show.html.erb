@@ -1,2 +1,40 @@
-<h1>Tournaments#show</h1>
-<p>Find me in app/views/tournaments/show.html.erb</p>
+<div style="float: left;">
+  <h1><%= @tournament.name %></h1>
+  <h4><%= @tournament.game.name %></h4>
+  <p><%= @tournament.description %></p>
+</div>
+<div class="tournament_team_box" style="float: right;">
+  <h4>Current Teams:</h4>
+  <table width="98%">
+    <% if @tournament.teams.count == 0 then %>
+      <em>No registrations yet</em>
+    <% else %>
+      <% @tournament.teams.each do |team| %>
+        <%= link_to team.name, party_team_path(:id => team.id) %><br/>
+      <% end %>
+    <% end %>
+  </table>
+</div>
+<div class="break"></div>
+<% if User.current && User.current.has_team_leader?(params[:party_id]) then %>
+  <% if User.current.own_team(params[:party_id]).is_registered?(@tournament.id) then %>
+    Your team, <em><%= link_to User.current.own_team(params[:party_id]).name, party_team_path(:id => User.current.own_team(params[:party_id]).id) %></em>, has already registered for this tournament.
+  <% else  %>
+    Want to register your team, <em><%= link_to User.current.own_team(params[:party_id]).name, party_team_path(:id => User.current.own_team(params[:party_id])) %></em>, for this tournament?<br/>
+    <%= link_to 'Register Now!', new_party_tournament_tournament_registration_path(:tournament_id => @tournament.id) %>
+  <% end %>
+<% elsif User.current && User.current.has_team?(params[:party_id]) then %>
+  <% if @tournament.is_registered?(User.current) then %>
+    You are registered for this tournament.  Your team is <em><%= link_to @tournament.users_team(User.current).name, party_team_path(@tournament.users_team(User.current)) %></em>
+  <% else %>
+    You are not registered for this tournament and your team leader is managing tournament registrations.
+  <% end %>
+<% elsif User.current && User.current.loggedin? then %>
+  <% if User.current.registered?(params[:party_id]) then %>
+    You must be on a team or <%= link_to 'make a team', new_party_team_path %> to register for tournaments.
+  <% else %>
+    You must first <%= link_to 'register for the party', new_party_registration_path %> to register for tournaments.
+  <% end %>
+<% else %>
+  <div class="center">Please <%= link_to 'create an account', new_account_path %> or <%= link_to 'login', login_path %> to register.</div>
+<% end %>

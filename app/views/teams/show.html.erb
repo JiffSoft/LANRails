@@ -1,2 +1,29 @@
-<h1>Teams#show</h1>
-<p>Find me in app/views/teams/show.html.erb</p>
+<h1><%= @team.name %></h1>
+<div style="float:left;">
+  <%= @team.description %>
+</div>
+<div style="float:right;" class="team_members_box">
+  <h4>Current Members</h4>
+  <% @team.users.each do |u| %>
+    <%= link_to u.username, profile_path(u.id), :style => "color: #{u.has_team_leader?(@team.party_id) ? 'yellow' : 'gray'};" %><br/>
+  <% end %>
+  <% if User.current && @team.leader == User.current then %>
+    <div class="control_panel">
+      <h4>Team Control Panel</h4><br/>
+      <%= link_to 'Disband Team', party_team_path, :method => 'DELETE', :confirm => 'Are you ABSOLUTELY sure you want to disband your team?  This action cannot be undone!' %>
+    </div>
+  <% end %>
+</div>
+<div class="break"></div>
+<hr/>
+<% if User.current && User.current.loggedin? then %>
+  <% if not User.current.has_team?(@team.party_id) then %>
+      This team has open membership. Would you like to <%= link_to 'join', new_party_team_team_membership_path(:team_id => @team.id) %>?
+   <% elsif User.current.own_team(@team.party_id).id != @team.id then %>
+      You are already a member of a different team for this party.
+   <% else %>
+      You are already a member of this team.
+   <% end %>
+<% else %>
+  <div class="center">Please <%= link_to 'create an account', new_account_path %> or <%= link_to 'login', login_path %> for team options.</div>
+<% end %>

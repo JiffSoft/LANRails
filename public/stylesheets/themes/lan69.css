@@ -161,6 +161,7 @@ p.sections
 	border:1px solid #bd7;
 	margin-top:0;
 	font-size:0.8em;
+        color: black;
 }
 
 p.error
@@ -265,4 +266,10 @@ p.error
     border-style:dotted;
     border-color: #373037;
     color: #CCCCCC;
+}
+
+.tournament_team_box {
+    text-align: center;
+    width: 180px;
+    padding-top: 24px;
 }

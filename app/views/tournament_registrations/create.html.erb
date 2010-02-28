@@ -1,0 +1,16 @@
+<h1>Register for <%= @tournament.name %></h1><br/>
+<% if @tournament.current_registrations >= @tournament.max_teams then %>
+  <p class="notice error">This tournament is currently full and is not accepting more registrations.</p>
+<% elsif User.current.own_team(params[:party_id]).is_registered?(@tournament.id) %>
+  <p class="notice error">You have already registerd for this tournament!</p>
+<% else %>
+  <p>You are about to register your team, <em><%= link_to User.current.own_team(params[:party_id]).name, party_team_path(:id => User.current.own_team(params[:party_id])) %></em>, for this tournament.</p>
+  <% if User.current.own_team(params[:party_id]).member_count > @tournament.team_size then %>
+  <p class="notice">Your team is larger than the maximum allowed team size for this tournament.  Please note that not all players will be able to play!</p>
+  <% elsif User.current.own_team(params[:party_id]).member_count < @tournament.team_size then %>
+  <p class="notice error">Your team is not large enough for this tournament!  If you do not have enough members when the tournament starts, you may not be able to perticipate!</p>
+  <% end %>
+  <div class="center">
+    <%= link_to "Register My Team!", party_tournament_tournament_registrations_path, :method => 'POST' %>
+  </div>
+<% end %>

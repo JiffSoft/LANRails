@@ -89,21 +89,18 @@ class User < ActiveRecord::Base
   end
 
   def has_team?(party)
-    @memberships = TeamMembership.find_all_by_user_id(self.id)
-    @memberships.each do |m|
-      true if Team.find(@memberships.team_id) && Team.find(@memberships.team_id).party_id = party
-    end
-    false
+    true if self.own_team(party)
   end
 
   def has_team_leader?(party)
-    @memberships = TeamMembership.find_all_by_user_id_and_leader(self.id,true)
-    @memberships.each do |m|
-      true if Team.find(@memberships.team_id) && Team.find(@memberships.team_id).party_id = party
-    end
-    false
+    TeamMembership.find_by_team_id(self.own_team(party)).leader
   end
-  
+
+  def own_team(party)
+    Team.find_by_party_id(party, :joins => "INNER JOIN team_memberships ON team_memberships.team_id
+        AND team_memberships.user_id =#{self.id}")
+  end
+
   def complete_verification(code)
     if code == self.verifycode
       self.status = STATUS_REGISTERED

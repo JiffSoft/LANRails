@@ -16,7 +16,7 @@ class AdminController < ApplicationController
       Settings[s] = params[:settings][s]
     end
     Settings.check_cache
-    flash[:warning] = "Settings saved successfully!"
-    render :action => 'settings'
+    flash[:notice] = "Settings saved successfully!"
+    redirect_to root_path
   end
 end

@@ -1,2 +1,7 @@
-<h1>Teams#index</h1>
-<p>Find me in app/views/teams/index.html.erb</p>
+<h1>Teams</h1>
+<p>Below are all the teams created for this party:</p>
+<% @teams.each do |t| %>
+<h3>
+  <%= t.name %>
+</h3>
+<% end %>

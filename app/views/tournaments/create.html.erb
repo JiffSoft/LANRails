@@ -12,10 +12,10 @@
       <td valign="top"><b>Description:</b></td>
       <td><%= f.text_area :description, :size => "5x15", :class => "mceEditor" %></td>
     </tr>
-    <% if @games then %>
+    <% if Game.find(:all).count > 0 then %>
     <tr>
       <td><b>Game:</b></td>
-      <td><%= f.select :game_id, @games %></td>
+      <td><%= f.select :game_id, Game.all.collect {|g| [ g.name, g.id ]} %></td>
     </tr>
     <% end %>
     <tr>
