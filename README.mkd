@@ -12,12 +12,10 @@ LANRails will include all standard features one out expect out of such a solutio
 +   News, treated much like a blog
 +   Staff Profiles
 +   Sponsors
-+   Tournament Management:
-
-    -   Registration
-    -   Team Management
-    -   Prize Management
-
++   Tournament Management
++   Tournament Registrations
++   Team Management
++   Prize Management
 +   ...and more!
 
 
@@ -58,6 +56,8 @@ LANRails is released under the MIT License and is copyright &copy; 2010 Jonathan
 
 
 ## Support ##
+
+All bug tracking is being done via Google Code.  You can get to the Google Code project at [http://code.google.com/p/lanrails/](http://code.google.com/p/lanrails/)
 
 The LANRails website is at [http://lanrails.jonnyfunfun.com/](http://lanrails.jonnyfunfun.com/).
 
