@@ -93,7 +93,7 @@ class User < ActiveRecord::Base
   end
 
   def has_team_leader?(party)
-    TeamMembership.find_by_team_id(self.own_team(party)).leader
+    TeamMembership.find_by_team_id(self.own_team(party).id).leader rescue false
   end
 
   def own_team(party)

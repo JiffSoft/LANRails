@@ -12,7 +12,7 @@ class Team < ActiveRecord::Base
   end
 
   def leader
-    User.find(TeamMembership.find_by_leader_and_team_id(true,self.id))
+    User.find(TeamMembership.find_by_leader_and_team_id(true,self.id).user_id)
   end
 
   def is_registered?(tournament)

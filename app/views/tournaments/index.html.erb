@@ -12,8 +12,12 @@
       <td><%= link_to t.name, party_tournament_path(:party_id => t.party_id, :id => t.id) %><br/>
         <span class="tournament_gamename"><%= t.game.name %></span></td>
       <td style="text-align: center;"><%= t.current_registrations %> of <%= t.max_teams %>
-        <% if User.current && User.current.has_team_leader?(t.party_id) && User.current.own_team(t.party_id).is_registered?(t.id) == false then %>
-          <br/><%= link_to '[Register]', new_party_tournament_tournament_registration_path(:tournament_id => t.id) %>
+        <% if User.current && User.current.has_team_leader?(t.party_id) then %>
+          <% if TournamentRegistration.find_by_team_id_and_tournament_id(User.current.own_team(t.party_id),t.id) != nil then %>
+            <br/><h4><em>Registered</em></h4>
+           <% else %>
+            <br/><%= link_to '[Register]', new_party_tournament_tournament_registration_path(:tournament_id => t.id) %>
+            <% end %>
         <% end %>
       </td>
     </tr>

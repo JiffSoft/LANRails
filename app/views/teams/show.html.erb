@@ -10,12 +10,13 @@
   <% if User.current && @team.leader == User.current then %>
     <div class="control_panel">
       <h4>Team Control Panel</h4><br/>
-      <% form_for :invitaiton, @invitation, :url => {:controller => 'team_membership', :action => 'moderate'} do |f| %>
-        <%= hidden_field_tag 'action', 'invite' %>
+      <% form_for :invitation, @invitation, :url => party_team_moderate_path(:team_id => params[:id]), :method => :post do |f| %>
+        <%= hidden_field_tag 'xtdaction', 'invite' %>
         Invite a new member:<br/>
-        <%= f.select :user_id, User.find(:all, :joins => 'LEFT JOIN team_memberships ON team_memberships.user_id = user.id', :conditions => "team_memberships.id IS NULL").collect {|usr| [ usr.name, usr.id ]} %>
-        <br/><%= f.submit "Send Invitation" %><br/>
+        <%= f.select :user_id, User.find(:all, :joins => 'LEFT JOIN team_memberships ON team_memberships.user_id = users.id', :conditions => "team_memberships.id IS NULL").collect {|usr| [ usr.username, usr.id ]} %>
+        <br/><%= f.submit "Send Invitation", :class => 'btn' %><br/>
       <% end %>
+        <br/>
       <%= link_to 'Disband Team', party_team_path, :method => 'DELETE', :confirm => 'Are you ABSOLUTELY sure you want to disband your team?  This action cannot be undone!' %>
     </div>
   <% end %>

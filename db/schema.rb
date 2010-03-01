@@ -22,11 +22,9 @@ ActiveRecord::Schema.define(:version => 20100301002533) do
   end
 
   create_table "games", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "short_name"
-    t.string   "game_type"
+    t.string "name"
+    t.string "short_name"
+    t.string "game_type"
   end
 
   create_table "news", :force => true do |t|
