@@ -1,0 +1,5 @@
+Hello <%= @user.username %>!  <%= @leader.username %>, the leader of the team <%= @team.name %> for the LAN event <%= @party.name %> has invited you to join his/her team.  You may respond to this action by clicking the link below.  You will then be asked to confirm whether or not you wish to join the team.
+<br/>
+<%= link_to url_for(:controller => 'team_memberships', :action => 'approve', :party_id => @party.id, :team_id => @team.id, :invitation_code => @invite_code, :only_path => false).to_s, url_for(:controller => 'team_memberships', :action => 'approve', :party_id => @party.id, :team_id => @team.id, :invitation_code => @invite_code, :only_path => false) %>
+<br/>
+This message is sent from an unattended mailbox.  Please do not reply.

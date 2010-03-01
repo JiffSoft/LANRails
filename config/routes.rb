@@ -17,6 +17,8 @@ ActionController::Routing::Routes.draw do |map|
     end
     party.resources :teams do |team|
       team.resources :team_memberships, :as => :members
+      team.invitation 'invitation/:approval_code', :controller => 'team_memberships', :action => 'approve', :conditions => {:method => :get}
+      team.moderate 'moderate', :controller => 'team_memberships', :action => 'moderate', :conditions => {:method => :post}
     end
     party.resources :prizes
     party.resources :registrations

@@ -55,4 +55,12 @@ class Postoffice < ActionMailer::Base
     subject "#{Settings[:site_title]} - #{topic.title} New Post"
     body :user => user, :topic => topic, :post => post
   end
+
+  def team_invitation_email(user,leader,team,party,invite_code)
+    user = User.find(user)
+    recipients user.email
+    from Settings[:email_from]
+    subject "#{Settings[:site_title]} - Invitation to join #{team.name}"
+    body :user => user, :leader => leader, :team => team, :party => party, :invite_code => invite_code
+  end
 end

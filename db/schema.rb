@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100228205533) do
+ActiveRecord::Schema.define(:version => 20100301002533) do
 
   create_table "forums", :force => true do |t|
     t.string   "name"
@@ -22,9 +22,11 @@ ActiveRecord::Schema.define(:version => 20100228205533) do
   end
 
   create_table "games", :force => true do |t|
-    t.string "name"
-    t.string "short_name"
-    t.string "game_type"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "short_name"
+    t.string   "game_type"
   end
 
   create_table "news", :force => true do |t|
@@ -94,10 +96,11 @@ ActiveRecord::Schema.define(:version => 20100228205533) do
   create_table "team_memberships", :force => true do |t|
     t.integer  "team_id"
     t.integer  "user_id"
-    t.boolean  "leader",     :default => false
-    t.boolean  "active",     :default => true
+    t.boolean  "leader",      :default => false
+    t.boolean  "active",      :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "invite_code"
   end
 
   create_table "teams", :force => true do |t|
