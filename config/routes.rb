@@ -17,7 +17,7 @@ ActionController::Routing::Routes.draw do |map|
     end
     party.resources :teams do |team|
       team.resources :team_memberships, :as => :members
-      team.invitation 'invitation/:approval_code', :controller => 'team_memberships', :action => 'approve', :conditions => {:method => :get}
+      team.invitation 'invitation/:approval_code', :controller => 'team_memberships', :action => 'approve', :conditions => {:method => [:get, :post]}
       team.moderate 'moderate', :controller => 'team_memberships', :action => 'moderate', :conditions => {:method => :post}
     end
     party.resources :prizes
@@ -38,8 +38,8 @@ ActionController::Routing::Routes.draw do |map|
   map.thank_you 'party/:party_id/registrations/thank_you', :controller => 'registrations', :action => 'thank_you'
   map.profile 'user/:user_id', :controller => 'accounts', :action => 'view'
   map.logout 'logout', :controller => 'accounts', :action => 'logout'
-  map.login 'login', :controller => 'accounts', :action => 'login', :conditions => {:method => :post}
-  map.login 'login', :controller => 'accounts', :action => 'login_form', :conditions => {:method => :get}
+  map.login 'login/:id', :controller => 'accounts', :action => 'login', :conditions => {:method => :post}
+  map.login 'login/:id', :controller => 'accounts', :action => 'login_form', :conditions => {:method => :get}
   map.activation 'activate/:activation_code', :controller => 'accounts', :action => 'activate'
   map.recovery 'recovery/:activation_code', :controller => 'accounts', :action => 'recover', :conditions => {:method => :get}
   map.recover 'recover', :controller => 'accounts', :action => 'recover', :conditions => {:method => :post}

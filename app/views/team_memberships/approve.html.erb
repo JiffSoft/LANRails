@@ -1,2 +1,9 @@
-<h1>TeamMemberships#approve</h1>
-<p>Find me in app/views/team_memberships/approve.html.erb</p>
+<h1>Invitation to Join <em><%= @team.name %></em></h1>
+<p><%= @team.leader.username %> has invited you to join their team.</p><br/>
+<div class="center">
+  <% form_tag party_team_invitation_path do %>
+    <%= radio_button_tag 'invitation_accepted', 'no', false %> I do <b>not</b> accept this invitation.<br/>
+    <%= radio_button_tag 'invitation_accepted', 'yes', true %> I accept this team invitation.<br/><br/>
+    <%= submit_tag 'Send Response' %>
+  <% end %>
+</div>

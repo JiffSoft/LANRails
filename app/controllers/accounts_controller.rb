@@ -14,6 +14,7 @@ class AccountsController < ApplicationController
     if User.current && User.current.loggedin?
       redirect_to root_path
     end
+    render :action => 'login'
   end
 
   def login
@@ -45,6 +46,7 @@ class AccountsController < ApplicationController
           Postoffice.deliver_verification_email(@user)
         else
           Postoffice.deliver_newuser_email(@user)
+          crowbar(@user)
         end
         render :action => 'thankyou'
       end
@@ -54,6 +56,7 @@ class AccountsController < ApplicationController
         Postoffice.deliver_verification_email(@user)
       else
         Postoffice.deliver_newuser_email(@user)
+        crowbar(@user)
       end
       render :action => 'thankyou'
     end
@@ -150,5 +153,10 @@ private
         redirect_to Base64.decode64(params[:id])
       end
     end
+  end
+
+  def crowbar(user)
+    User.current = user
+    session[:user_id] = user.id
   end
 end

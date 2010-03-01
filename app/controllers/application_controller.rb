@@ -32,14 +32,14 @@ class ApplicationController < ActionController::Base
   end
   
   def require_login
-    redirect_to :controller => 'account', :action => 'login', :id => Base64.encode64(request.request_uri)  unless User.current && User.current.active?
+    redirect_to login_path(:id => Base64.encode64(request.request_uri))  unless User.current && User.current.active?
   end
   
   def require_moderator
-    redirect_to :controller => 'account', :action => 'login', :id => Base64.encode64(request.request_uri) unless User.current && User.current.moderator?
+    redirect_to login_path(:id => Base64.encode64(request.request_uri)) unless User.current && User.current.moderator?
   end
   
   def require_administrator
-    redirect_to :controller => 'account', :action => 'login', :id => Base64.encode64(request.request_uri) unless User.current && User.current.admin?
+    redirect_to login_path(:id => Base64.encode64(request.request_uri)) unless User.current && User.current.admin?
   end
 end

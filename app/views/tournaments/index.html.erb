@@ -43,3 +43,12 @@
     <% end %>
   </table>
 <% end %>
+<div class="center">
+  <% if User.current && User.current.loggedin? && User.current.registered?(params[:party_id]) && User.current.has_team?(params[:party_id]) != true then %>
+    <%= link_to '[Create A Team]', new_party_team_path %>
+  <% elsif User.current && User.current.loggedin? && User.current.registered?(params[:party_id]) == false then %>
+    You must first <%= link_to 'register for the party', new_party_registration_path %> to register a team.
+  <% elsif not User.current then %>
+    Please <%= link_to 'create an account', new_account_path %> or <%= link_to 'login', login_path %> to make a team.
+  <% end %>
+</div>

@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :username, :message => "is already registered!"
   validates_presence_of :password, :message => "is required!"
   validates_length_of :password, :minimum => 6, :message => "must be at least 6 characters long!"
-  validates_length_of :username, :minimum => 6, :message => "must be at least 6 characters long!"
+  validates_length_of :username, :minimum => 4, :message => "must be at least 4 characters long!"
   validates_uniqueness_of :email, :message => "has already been registered!"
   validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i, :message => "is not a valid e-mail address!"
   validates_format_of :username, :with => /^[a-z0-9_\-@\.]*$/i, :message => "may only contain numbers, letters, and underscores!"

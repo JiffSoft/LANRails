@@ -3,8 +3,11 @@
   <b><%= @login_error %></b>
 <% end %>
 <% form_tag(login_path) do %>
+    <% if params[:id] %>
+        <%= hidden_field_tag 'id', params[:id] %>
+    <% end %>
 	<b>Username:</b> <%= text_field nil, :username %><br />
 	<b>Password:</b> <%= password_field nil, :password %><br />
-	<%= submit_tag %>
+	<%= submit_tag 'Log-In', :class => 'btn' %>
 <% end %>
-        <br/><span class="center"><%= link_to 'Forgot your password?', :controller => 'accounts', :action => 'forgot_password' %></span>
+<br/><span class="center"><%= link_to 'Forgot your password?', :controller => 'accounts', :action => 'forgot_password' %></span>

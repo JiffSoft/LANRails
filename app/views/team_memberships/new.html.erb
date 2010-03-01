@@ -1,2 +1,7 @@
-<h1>TeamMemberships#new</h1>
-<p>Find me in app/views/team_memberships/new.html.erb</p>
+<h1>Joining <%= @team.name %></h1>
+<p>You are about to join the team <em><%= @team.name %></em>.  Please note that you can only be a member of one team.</p>
+<div class="center">
+  <% form_tag party_team_team_memberships_path, :method => :post do %>
+    <%= submit_tag 'Join Team', :class => 'btn' %>
+  <% end %>
+</div>

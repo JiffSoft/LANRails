@@ -5,7 +5,7 @@
 <div style="float:right;" class="team_members_box">
   <h4>Current Members</h4>
   <% @team.users.each do |u| %>
-    <%= link_to u.username, profile_path(u.id), :style => "color: #{u.has_team_leader?(@team.party_id) ? 'yellow' : 'gray'};" %><br/>
+    <%= link_to u.username, profile_path(u.id), :style => "color: #{@team.leader == u ? 'yellow' : 'gray'};" %><br/>
   <% end %>
   <% if User.current && @team.leader == User.current then %>
     <div class="control_panel">
