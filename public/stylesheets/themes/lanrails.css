@@ -292,15 +292,25 @@ p.error
 }
 
 
+.tournament_info_box {
+    width: 390px;
+    margin-right: 10px;
+}
+
 .tournament_team_box {
     text-align: center;
     width: 180px;
     padding-top: 24px;
 }
 
+.team_info_box {
+    width: 390px;
+    margin-right: 10px;
+}
+
 .team_members_box {
     width: 180px;
-text-align: center;
+    text-align: center;
 }
 
 .tournament_gamename {

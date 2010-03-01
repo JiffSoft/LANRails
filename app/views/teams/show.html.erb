@@ -1,8 +1,8 @@
 <h1><%= @team.name %></h1>
-<div style="float:left;">
+<div class="team_info_box float_left">
   <%= @team.description %>
 </div>
-<div style="float:right;" class="team_members_box">
+<div class="team_members_box float_left">
   <h4>Current Members</h4>
   <% @team.users.each do |u| %>
     <%= link_to u.username, profile_path(u.id), :style => "color: #{@team.leader == u ? 'yellow' : 'gray'};" %><br/>

@@ -1,9 +1,9 @@
-<div style="float: left;">
+<div class="tournament_info_box float_left">
   <h1><%= @tournament.name %></h1>
   <h4><%= @tournament.game.name %></h4>
   <p><%= @tournament.description %></p>
 </div>
-<div class="tournament_team_box" style="float: right;">
+<div class="tournament_team_box float_left">
   <h4>Current Teams:</h4>
   <table width="98%">
     <% if @tournament.teams.count == 0 then %>

@@ -4,7 +4,7 @@
     <% link_to s.url do %>
       <%= s.public_image_tag %>
     <% end %>
-    <% if User.current && User.current.administrator? then %>
+    <% if User.current && User.current.admin? then %>
       <br/><%= link_to '[Delete]', sponsor_path(s), :confirm => 'Are you sure you want to remove this sponsor?', :method => :delete %>
     <% end %>
   </div>

@@ -291,6 +291,10 @@ p.error
     color: #CCCCCC;
 }
 
+.tournament_info_box {
+    width: 390px;
+    margin-right: 10px;
+}
 
 .tournament_team_box {
     text-align: center;
@@ -298,9 +302,14 @@ p.error
     padding-top: 24px;
 }
 
+.team_info_box {
+    width: 390px;
+    margin-right: 10px;
+}
+
 .team_members_box {
     width: 180px;
-text-align: center;
+    text-align: center;
 }
 
 .tournament_gamename {

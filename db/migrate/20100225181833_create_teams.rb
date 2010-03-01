@@ -4,7 +4,7 @@ class CreateTeams < ActiveRecord::Migration
       t.string :name
       t.integer :party_id
       t.text :description
-      t.boolean :moderated, :default => 'true'
+      t.boolean :moderated, :default => true
       t.timestamps
     end
   end
