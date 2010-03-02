@@ -10,6 +10,9 @@ class NewsController < ApplicationController
       response.headers['Content-Type'] = 'application/rss+xml'
       render :action => 'feed', :layout => false
     end
+    if Party.current_party && Party.current_party.running? == false && Party.current_party.past? == false then
+      @party = Party.current_party
+    end
   end
 
   def show

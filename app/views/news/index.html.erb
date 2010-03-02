@@ -1,4 +1,11 @@
- <% @news.each do |n| %>
+<% if @party then %>
+  <div class="upcoming_party_box center">
+    <h6>Next Upcoming Party:</h6>
+    <h2><%= link_to @party.name, party_registrations_path(:party_id => @party.id) %></h2>
+    <%= @party.start_time %> to <%= @party.end_time %>
+  </div><br/><br/>
+<% end %>
+<% @news.each do |n| %>
   <table class="news_table">
     <tr>
       <th class="news_title"><%= link_to n.title, news_url(n) %>
