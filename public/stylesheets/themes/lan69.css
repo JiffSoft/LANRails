@@ -150,8 +150,16 @@ table td {
 
 .news_table {
     width: 75%;
-    border: 0;
+    border-width: 0 !important;
+    border: 0 !important;
     margin-bottom: 20px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.news_table td, .news_table th {
+    border: 0 !important;
+    border-width: 0 !!important;
 }
 
 .news_title {
